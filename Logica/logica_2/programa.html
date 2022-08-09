@@ -1,0 +1,17 @@
+
+<canvas width="600" height="400"></canvas> <!--O canvas é uma área da tela onde podemos desenhar, definimos o tamanho com propriedade de altura e largura-->
+
+
+<script>
+	
+	var tela = document.querySelector('canvas'); //A variavel tela está recebendo o valor canvas, document.querySelector('') é usado para pegar uma tag do mundo HTML e puxar para o mundo JS para poder ser usada.
+	var pincel = tela.getContext('2d'); //A variavel pincel recebe como valor a tela com a propriedade getContext('') que é um canvas API que retorna um contexto de desenho no canvas, levando a criação de um objeto Canvas, informando 2D representamos uma renderização bidimensional.
+
+	pincel.fillStyle = 'lightgrey'//A propriedade .fillStyle da API do Canvas 2D especifica a cor ou o estilo para usar regiões internas. O valor inicial é #000 (preto), mas nesse caso está recebendo a cor lightgrey(cinza claro).
+	pincel.fillRect(0,0,600,400);//O método .fillRect(x,y,width,height) da API Canvas 2D desenha um retângulo preenchido na posição (x, y), no qual o tamanho é determinado pela width (largura) e pela height (altura), e cujo o estilo é determinado pelo atributo fillStyle.
+
+	
+
+
+
+</script>
