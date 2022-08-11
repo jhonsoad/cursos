@@ -1,0 +1,22 @@
+tag audio do html usada para importar audio ja tem estilo proprio e é
+diferente para cada navegador, mas so aparece os botoes de play/pause
+volume se adicionarmos o atributo controls a tag
+
+em uma tag html o atribulo onclick="" serve para dar uma função ao botão
+podendo adicionar codigo javascript dentro das aspas, mas o ideal é
+criar um arquivo .js e importar no html
+
+main.js é normalmente o nome do arquivo principal .js de um projeto
+
+função querySelector('') faz uma busca pelo seletor, como no css se
+o seletor for uma tag colocamos o nome da tag se for uma classe
+colocamos o .nome_da_classe se for um id usamos #nome_do_id 
+
+document é uma palavra reservado do javascript que representa todo
+documento html, para usarmos o querySelector chamamos primeiro o
+document.querySelector('') podemos testar no console para ver o retorno
+
+exemplo de selector document.querySelector('input[type=tel]') seleciona uma
+tag input com o atributo type=tel, [] são usadas para atributos html e css
+
+
