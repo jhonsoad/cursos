@@ -19,4 +19,24 @@ document.querySelector('') podemos testar no console para ver o retorno
 exemplo de selector document.querySelector('input[type=tel]') seleciona uma
 tag input com o atributo type=tel, [] são usadas para atributos html e css
 
+apos carregar o audio no html com a tag audio acessamos o arquivo pelo JS
+com querySelector('#id_do_arquivo').play() o colocar o ponto depois de selecionar
+o arquivo estamos acessando as funcionalidades dele por isso podemos usar a 
+função play
+
+a leitura da pagina pelo navegador é feita linha por linha de cima para baixo
+então se chamarmos o arquivo .js com a tag script antes de um arquivo carregado
+no html que queremos usar como um audio,video, temos que chamar o arquivo .js
+depois deste arquivo ex: carregamos um <audio src"a.mp3"> na linha 50 do codigo
+então temos que carregar o arquivo .js que vai chamar esse arquivo apartir da
+linha 51 normalmente podemos por na ultima linha dentro do body
+
+document.querySelector('.classe').onclick = funcão_com_audio;
+
+o seletor pega uma classe atribuida a um botão, com o ponto podemos
+ acessar os atributos dele usamos onclick e com = atribuimos o valor
+ de uma função que esta puxando um arquivo de audio que foi carregado no html
+ mas apenas atribuimos o valor da função por isso não colocamos ()
+ 
+ 
 
