@@ -10,7 +10,8 @@ main.js é normalmente o nome do arquivo principal .js de um projeto
 
 função querySelector('') faz uma busca pelo seletor, como no css se
 o seletor for uma tag colocamos o nome da tag se for uma classe
-colocamos o .nome_da_classe se for um id usamos #nome_do_id 
+colocamos o .nome_da_classe se for um id usamos #nome_do_id sempre entre
+parenteses
 
 document é uma palavra reservado do javascript que representa todo
 documento html, para usarmos o querySelector chamamos primeiro o
@@ -38,5 +39,49 @@ o seletor pega uma classe atribuida a um botão, com o ponto podemos
  de uma função que esta puxando um arquivo de audio que foi carregado no html
  mas apenas atribuimos o valor da função por isso não colocamos ()
  
- 
+document.querySelectorAll('') busca todos os elementos com aquele seletor
+podemos usar uma tag html como button mas não é uma boa prática o ideal é
+usar classes por exemplo, uma classe atrelada a varios elementos essa função
+busca esses elementos e os organiza como um array
+
+para atribuirmos um valor que a principio não vai mudar como uma lista de teclas
+usamos uma constante const listaDeTeclas, funciona igual uma variavel para
+ atribuir valor mas ja informa que o valor é fixo e não variavel
+esta const pode receber  = document.querySelectorAll('.tecla') e chamar essas
+infos igual um array listaDeTeclas[] e a posição do elemento se essa classe
+se referice a botoes poderia usar o atributos deles listaDeTeclas[1].onclick
+
+estrutura de repetição while
+let contador = 0;//declarar variavel para comparação
+while(contador < contador.length){	 // verifica condição para realizar a repetição
+	alert(hello world)	//codigo a ser executado em loop
+	contador ++ 	// adiciona o valor do contatdor + 1
+};
+
+Função com parametro
+function tocaSom(idElementoAudio) { // função recebe parametro varialvel
+	document.querySelector(idElementoAudio).play(); // executa função play de
+//um arquivo de audio que foi chamado, ao usar essa função chamamos 
+//tocaSom('#som_tecla_pom')// o elemento de audio com esse id vai executar a
+//função play();
+};
+
+Funções Anônimas são funções sem nome que são declaradas function(){codigoDaFunção}
+So pode ser usadas como valor de algum atributo ou quando são armazenadas dentro de
+uma variavel ou constante
+button.onclick = function(){tocaSom('#som_tecla_pom')}; // usada como valor 
+do parametro onclick
+
+classList atributo que lista as classe de um elemento organizadas em um array
+listaDeTeclas[0].classList[1] // no item 0 da listaDeTeclas está sendo usado
+o classList que esta com o valor 1 que é referente a segunda classe atribuida
+a este elemento, sendo possivel acessa-la
+
+Template string usada para imprimir variaveis junto com strings
+`#som_${instrumento}`; entre crases está sendo concatenado o id #som_ com
+a const instrumento que tem um valor dinamico montando assim o valor
+#som_tecla_pom depois #som_tecla_clap e assim por diante, o conteudo tem
+sempre q estar dentro das crases e as variaveis com ${var} sifrão e conchetes
+
+usando for (contador = 0; contador < listaDeBotoes.length; contador ++){}
 
