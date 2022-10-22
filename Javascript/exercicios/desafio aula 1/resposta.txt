@@ -1,0 +1,4 @@
+ao selecionar o elemento no console é possivel verificar o seu selector
+clicando em copiar, apos copiar o selector no console digite
+document.querySelector('selector')
+do input do tipo tel é o: input[type=tel]
