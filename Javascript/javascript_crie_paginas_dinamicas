@@ -83,5 +83,49 @@ a const instrumento que tem um valor dinamico montando assim o valor
 #som_tecla_pom depois #som_tecla_clap e assim por diante, o conteudo tem
 sempre q estar dentro das crases e as variaveis com ${var} sifrão e conchetes
 
-usando for (contador = 0; contador < listaDeBotoes.length; contador ++){}
+const listaDeTeclas = document.querySelectorAll('.tecla'); listaDeTeclas recebe
+o valor da classe tecla q é atribuida a varios botoes na tela.
+usando for (contador = 0; contador < listaDeBotoes.length; contador ++){
+		listaDeTeclas[contador];} os botoes ficam armazenados em um array
+e conforme o contador altera o valor ele acessa um botao diferente
+
+Podemos adicionar uma classe a um elemento acessando a função add de classList
+evento onkeydown ocorre quando uma tecla é precionada no teclado
+ex: tecla é uma const que tem o valores em um array classList acessa a lista
+de classe e depois com .add ela adiciona uma classe já existente a um elemento 
+tecla.onkeydown = function (){ 
+	tecla.classList.add('ativa')}
+Podemos remover uma classe de um elemento acessando a função remove do classList
+evento onkeyup ocorre quando paramos de precionar uma tecla do teclado	
+tecla.onkeyup = function () {
+    tecla.classList.remove('ativa')}
+
+em uma função anonima diretamente ligada a um evento podemos colocar um parametro.
+Para usarmos os detalhes do evento foi criado o parametro evento
+tecla.onkeydown = function(evento){ 
+
+	if(evento.code === 'Enter' || evento.code === 'Space') {
+		tecla.classList.add('ativa');
+	}
+a condição do if é o evento.code o .code tem o valor da tecla precionada
+console.log(evento.code), com o parametro evento definido se usarmos o
+ console.log retorna o valor code da tecla clicada e podemos usar esse valor
+ para atribuir eventos
+ 
+Para comparar valores usamos 1 == 1 se forem do mesmo tipo, mas se for 1 === '1'
+1 numero e 1 string o == vai dar true mas o === vai dar false pois precisa ter
+o mesmo valor e ter o mesmo tipo
+
+|| representa o operador or ou
+!= operador diferente
+&& operador and e
+
+if(elemento != null){}condição if para elemento que não é nulo
+mas não precisamos colocar o != o javscript já verica isso
+if(elemento){}condição if para elemento que não é nulo
+
+
+ 
+ 
+
 
