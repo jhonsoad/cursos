@@ -1,0 +1,11 @@
+DOM (Document Object Model) - representação do html para o javascript
+acessível pela palavra document, se colocarmos document no console do
+navegador apresentara todo nosso htlm da pagina
+
+textContent
+Algumas tags como h1 p span possuem conteudo de texto que conseguimos acessar
+através do textContent. cria variavel titulo e atera o texto do h1 para banana
+var titulo = document.querySelector("h1")
+titulo.textContent = "Banana"
+O ideal é usar uma classe ou id como boa pratica para buscar no querySelector
+
