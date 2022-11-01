@@ -8,4 +8,12 @@ através do textContent. cria variavel titulo e atera o texto do h1 para banana
 var titulo = document.querySelector("h1")
 titulo.textContent = "Banana"
 O ideal é usar uma classe ou id como boa pratica para buscar no querySelector
+podemos também capturar o valor do textContent
 
+var paciente = document.querySelector("#primeiro-paciente");
+var tdPeso = paciente.querySelector(".info-peso");
+var peso = tdPeso.textContent;
+
+var paciente recebe o valor de uma tabela tag <tr> que tem o id primeiro-paciente
+var tdPeso recebe o valor da tag <td> que tem a classe info-peso
+var peso recebe o conteudo de texto da tag td pelo textContent
