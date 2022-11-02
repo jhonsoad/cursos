@@ -17,3 +17,17 @@ var peso = tdPeso.textContent;
 var paciente recebe o valor de uma tabela tag <tr> que tem o id primeiro-paciente
 var tdPeso recebe o valor da tag <td> que tem a classe info-peso
 var peso recebe o conteudo de texto da tag td pelo textContent
+
+função toFixed(); que recebe como parametro a quantidade de casas decimais
+a serem exibidas depois do ponto
+imc = 12.92374
+imc.toFixed(2);
+imc === 12.92
+
+Para modificar o estilo de um elemento podemos usar o .style direto no javascript
+paciente.style.color = "red"; paciente é uma variavelcom valor de um elemento
+HTML com .style acessamos os estilo desse elemento e com .color acessamos um
+atributo de style e com = atribuimos a cor red para o elemento
+se fromos usar uma propriedade css com duas palavras como background-color
+escrevemos assim paciente.backgroundColor = "red"; com camelcase
+mas o idela é usar o classList com uma classe css.
