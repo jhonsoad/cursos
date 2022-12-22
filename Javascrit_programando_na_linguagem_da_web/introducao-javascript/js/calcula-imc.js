@@ -38,12 +38,6 @@ for (var i = 0; i < pacientes.length; i++) {
     }
 }
 
-var botaoAdicionar = document.querySelector('#adicionar-paciente');
-
-botaoAdicionar.addEventListener("click", function(event){
-    
-});
-
 function calculaImc(peso, altura) {
     var imc = 0;
     imc = peso / (altura * altura);

@@ -124,52 +124,6 @@ if(elemento != null){}condição if para elemento que não é nulo
 mas não precisamos colocar o != o javscript já verica isso
 if(elemento){}condição if para elemento que não é nulo
 
-addEventListener() é um escutador de eventos que escutara as interações dos
-usuários no seu parametro informamos o evento que queremos escutar e depois
-separado por virgula colocamos a função que sera executada se o evento ocorrer
-botaoAdicionar.addEventListener("click", function()){exemplo com função anonima
-    console.log("Oi cliquei no botão");
-});
-botaoAdicionar.addEventListener("click", mostraFrase)
-primeiro parametro evento e segundo parametro a função
-
-na função de que chamamos para ser executa após o evento podemos usar
-event.preventDefault, para que o evento não faça o comportamento padrão como
-recarregar a pagina apos clicar em um formulario, para isso adicionamos event
-como parametro da funcao e dentro dela colocamos o event capturado.preventDefault
-botaoAdicionar.addEventListener("click", function(event){
-    event.preventDefault();
-
-através do formulário, temos acesso aos seus inputs, acessamos atravésde sua
-propriedade name, a varialvel form tem o valor de um formulario com inputs e botao
-var form = document.querySelector("#form-adiciona");
-var nome = form.nome.value;
-podemos acessar o name de cada input desta forma e seu valor que é digitado pelo
-pelo usuario é guaradado na variavel
-
-creatElement("") uma função para criar elementos no mundo HTML
-var pacienteTr = document.createElement("tr"); cria uma tag tr como valor de uma var
-var nomeTd = document.createElement("td"); criamos uma td da mesma forma
-nomeTD.textContent = nome; adiona valor da var nome que é o valor do input
-digitado pelo usuário
-
-appendChild("") essa função adiciona um elemento dentro de outro
-pacienteTr.appendChild(nomeTd); nesse caso adiona a var nomeTd que tem o valor
-de uma tag td criada no javascript com o valor do input e a coloca como elemento
-filho da var pacienteTr que tambem foi criada com no javascript e tem o valor da
-tag tr, nmas apara exibi-las na no browser é necessario colocalas com elemento
-filho de uma tag existente no html capturando o valor de uma tbody por exemplo
-colocando em uma var e usando appendChild.
-
-event shortcut para cada elemento existente no javascript há a propriedade
-on + nomeDoEvent como onclick, onmouseover para o evento mouseover a limitação
-é que se usarmos uma após a outra sobreescreve e so a ultima é valida 
-botao.onclick = botaoHandler;
-botao.onclick = outroHandler; // substitui botaoHandler
-com addEventListener criamos uma fila de execução
-botao.addEventListener('click', botaoHandler);
-botao.addEventListener('click', outroHandler);
-
  
 
 
