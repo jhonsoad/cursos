@@ -111,3 +111,27 @@ form.reset();
 form é uma variavel que recebeu o valor de um formulario e se usarmos a função
 reset nele ele vai resetar e limpar os campos pode ser chamada ao enviar o
 formulario por exemplo
+
+Se no meio da função tiver um if e ele for executado com um return vazio no fim
+o codigo que estiver abaixo na mesma função não é executado
+
+Se o if tiver apenar 1 função ex:
+if(!validaPeso(paciente.peso)) {
+        erros.push("Peso é inválido");
+    }
+Podemos colocar tudo em uma linha sem colocar as chaves que o JS entende ex:
+if(!validaPeso(paciente.peso)) erros.push("Peso é inválido");
+
+O método forEach() executa uma dada função em cada elemento de um array
+const array1 = ['a', 'b', 'c'];
+
+array1.forEach(element => console.log(element));
+
+// Expected output: "a"
+// Expected output: "b"
+// Expected output: "c"
+
+Para remover do html as tags li que foram criadas dentro da ul usamos o
+ul.innerHTML = ""; ul é a var que tem o valor do elemento html ul
+e está atribuindo para ele uma string vazia o que faz com que as tags
+ filhas sejam apagadas
