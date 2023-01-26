@@ -135,3 +135,54 @@ Para remover do html as tags li que foram criadas dentro da ul usamos o
 ul.innerHTML = ""; ul é a var que tem o valor do elemento html ul
 e está atribuindo para ele uma string vazia o que faz com que as tags
  filhas sejam apagadas
+ 
+ dblclick é o nome do evento de duplo clique
+ 
+ função remove() é responsavel por remover elementos html ex:
+ var t = document.querySelector("h1");
+ t.remove();
+ Com isso é removido o elemento h1 da pagina
+ 
+
+ var pacientes = document.querySelectorAll(".paciente");
+
+pacientes.forEach(function(paciente) {
+    paciente.addEventListener("dblclick", function() {
+        this.remove();
+    });
+});
+this é uma palavra de contexto ligada com quem acionou o evento,
+ a quem o evento está atrelado. Como o evento está atrelado ao paciente,
+ o this fará referência a ele.
+ 
+event.target (evento.alvo)
+var tabela = document.querySelector("table");
+
+tabela.addEventListener("dblclick", function(event) {
+    event.target.remove();
+});
+target é uma propriedade de event referente a um objeto para o qual um evento foi disparado
+nesse exemplo se refere ao elemento que recebe um duplo click
+
+parentNode
+Utilizado para se referir ao elemento pai de outro elemento
+var tabela = document.querySelector("table");
+
+tabela.addEventListener("dblclick", function(event) {
+    var alvoEvento = event.target;
+    var paiDoAlvo = alvoEvento.parentNode; // TR = paciente = remover 
+    paiDoAlvo.remove();
+});
+
+setTimeout()função que faz uma função ser executada despois de um tempo definido
+var tabela = document.querySelector("#tabela-pacientes");
+
+tabela.addEventListener("dblclick", function(event) {
+    event.target.parentNode.classList.add("fadeOut");
+
+    setTimeout(function() {
+        event.target.parentNode.remove();
+    }, 500);
+
+});Coloca uma classe que aplica uma opacidaded 0 a um elemento em uma transição de 0.5s
+o set timeout espera 5 segundos e remove o elemento. 
