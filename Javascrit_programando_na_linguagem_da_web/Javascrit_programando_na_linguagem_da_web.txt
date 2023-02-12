@@ -186,3 +186,45 @@ tabela.addEventListener("dblclick", function(event) {
 
 });Coloca uma classe que aplica uma opacidaded 0 a um elemento em uma transição de 0.5s
 o set timeout espera 5 segundos e remove o elemento. 
+
+Evento input é disparado quando o valor de um elemento input, select ou textarea é
+alterado
+campoFiltro.addEventListener("input", function(){
+	console.log()this.value}
+Sempre que muda o valor do campo input adicionando ou apagando texto o evento é
+disparado e nessa caso está imprimindo no console o valor do input sempre que
+um caracter é colocado ou apagado
+
+Expressão regular
+As expressões regulares são padrões de texto que podem ser usados para corresponder,
+ procurar ou substituir padrões em strings em JavaScript
+ var expressao = new RegExp(this.value, "i");
+ o new cria um novo objeto RegExp javascript, podemos passar dois parametros para
+ o objeto, primeiro o texto que queremos buscar, no caso, o termo digitado no campo
+de busca, o segundo são uma ou mais flags referente as caracteristicas dos termos
+ que devem ser buscados, case sensitive diferencia maisuculas e minusculas, 
+ case insensitive não diferencia passamos o segundo parametro a flag "i" referente
+ a case insensitive
+
+var expressao = new RegExp(this.value, "i"); 
+if (expressao.test(nome)) {
+	paciente.classList.add("invisivel");
+} else {
+	paciente.classList.remove("invisivel");
+}
+test() está verificando se thi.value tem alguma letra igual a var nome
+O test() método executa uma busca por uma correspondência entre uma expressão regular
+ e uma string especificada. Retorna true ou false.
+ 
+ O substring()método retorna a parte do stringíndice inicial até e excluindo o índice
+ final, ou até o final da string se nenhum índice final for fornecido.
+ var string = "Alura";
+var resultado = string.substring(1, 4);
+Extraímos uma string que começa no segundo caractere (número 1) e termina no quarto
+ caractere (número 3, índice anterior ao número 4). O valor da variável resultado é: lur
+ Se passarmos so um parametro ele entende que o segundo parametro é a ultima letra da string
+ substring(2) = substring(2, string.length)
+ const text = "Mozilla";
+console.log(text.substring(2, 5)); // "zil"
+console.log(text.substr(2, 3)); // "zil"
+

@@ -37,7 +37,7 @@
 
 </script> -->
 
-<ul class="lista">
+<!-- <ul class="lista">
     <li>A</li>
     <li>B</li>
     <li>C</li>
@@ -67,4 +67,22 @@
         li.textContent = input.value;
         lista.appendChild(li);
     });
-</script>
+</script> -->
+
+<body>
+    <textarea id="corpo-postagem" cols="40" rows="5"></textarea>
+    <p>Caracteres: <span id="numero-caracteres">0</span> caracteres.</p>
+    <script>
+    var campoPostagem = document.querySelector("#corpo-postagem");
+    campoPostagem.addEventListener("input", atualizaCaracteres);
+    function atualizaCaracteres() {
+        var campoPostagem = document.querySelector("#corpo-postagem");
+        
+        var postagem = document.querySelector("#corpo-postagem").value;
+        var caracteres = postagem.length;
+    
+        var contador = document.querySelector("#numero-caracteres");
+        contador.innerHTML = caracteres;    
+    }
+    </script>
+</body>
