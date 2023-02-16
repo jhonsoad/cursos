@@ -228,3 +228,33 @@ Extraímos uma string que começa no segundo caractere (número 1) e termina no 
 console.log(text.substring(2, 5)); // "zil"
 console.log(text.substr(2, 3)); // "zil"
 
+Ajax é fazer uma requisição com JS de modo assíncrono porque não está parando
+o fluxo do código, ou seja, no momento em que a requisição é feita, a execução
+continua normalmente
+new é para instanciar um novo objeto
+O XMLHttpRequest é um objeto do JS responsável por fazer requisições HTTP
+No método open colocamos o tipo de requisição e a url da api a ser chamada
+No método send fazemos a chamada para a api que ja nos retorna o response
+load é um evento que é acionado quando a requisição termina e sua resposta é
+carregada, nesse caso ele coloca os dados retornados ma var.response
+A propriedade responseText acessamos os dados carregados em texto
+No console.log typeof + a var me retorna o tipo do conteudo nessa var no caso
+resposta retorna string e pacientes retorna object
+Os dados dessa api retornam o tipo json que é parecido co objetos no javascript
+para convertermos json que capturamos com o tipo string em um array de objetos
+javascript usamos o metodo parse() dessa forma JSON.parse(var)
+Podemos mostrar alguma mensagem de erro se a requisição não retronar 200 
+verificando pela propriedade staus que retorna 200 404 etc.. 
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "url da api");
+xhr.addEventListener("load", function(){
+	var resposta = xhr.responseText;
+	console.log(typeof resposta);
+	
+	var pacientes = JSON.parse(resposta);
+	console.log(typeof pacientes);
+});
+xhr.send();
+
+

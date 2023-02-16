@@ -14,17 +14,20 @@ botaoAdicionar.addEventListener("click", function(event){
         return;
     }
 
-    // Cria a tr e td do paciente
-    var pacienteTr = montaTr(paciente);
-
-    // adicionando o paciente na tabela
-    var tabela = document.querySelector('#tabela-pacientes');
-
-    tabela.appendChild(pacienteTr);
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();
+    var mensagemErro = document.querySelector("#mensagens-erro");
+    mensagemErro.innerHTML = "";
 
 });
+
+function adicionaPacienteNaTabela(paciente) {
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector('#tabela-pacientes');
+    tabela.appendChild(pacienteTr);
+    
+}
 
 function exibeMensagensDeErro(erros){
     var ul = document.querySelector("#mensagens-erro");
