@@ -252,7 +252,7 @@ xhr.addEventListener("load", function(){
 	var resposta = xhr.responseText;
 	console.log(typeof resposta);
 	
-	var pacientes = JSON.parse(resposta);
+	var pacientes = JSON.parse(resposta);6
 	console.log(typeof pacientes);
 });
 xhr.send();

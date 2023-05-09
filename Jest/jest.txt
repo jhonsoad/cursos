@@ -1,0 +1,31 @@
+jest
+
+iniciando o projeto comnados no terminal
+npm init -y
+criar um arquivo package.json
+
+npm i -D jest
+para instalar o jest o -D é um atalho pro --save-dev
+
+3 funções principais do jest: describe, test e expect
+describe é a descrição da switch de teste onde ficam os teste, switch de teste é uma bateria de teste de uma funcionalidade
+posso usar test ou it para colocar o meu teste unirtario
+expect onde informo o que quero testar e com .toBe o retorno esperedo
+
+describe('Calculate area of square', () => {
+    test("passed the value 3, it should return 9", ()=>{
+        expect(areaOfSquare(3)).toBe(9)
+    })
+})teste para uma função que eleva um numero a potencia 2
+o .toBe() compara dse um objeto é === o toEqual verifica mais a fundo a igualdade de objetos por exemplo verifica se são iguais os valores de cada uma propriedade dentro de um objeto
+
+test("not passing the paramiter should return null",
+()=>{
+	expect(factory.getPerson()).toBeNull()
+})
+toBenull() é usado para verificar se o valor retorna nulo
+
+test("passed a string with the client value, it should return a new client object", ()=> {
+	expect(factory.getPerson("Client")).toBeInstanceOf(Client)
+})
+toBeInstanceOf() é usado para verificar se um objeto ou metodo esta sendo instanciado por uma classe, factory é uma const com o valor de uma classe esta declarado no teste, e chama outra classe que é Client que esta sendo importada no teste 
