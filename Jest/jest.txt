@@ -29,3 +29,17 @@ test("passed a string with the client value, it should return a new client objec
 	expect(factory.getPerson("Client")).toBeInstanceOf(Client)
 })
 toBeInstanceOf() é usado para verificar se um objeto ou metodo esta sendo instanciado por uma classe, factory é uma const com o valor de uma classe esta declarado no teste, e chama outra classe que é Client que esta sendo importada no teste 
+
+toBeUndefined() verifica se uma propriedade é undefined
+toBeDefined() verifica se uma propriedade foi definida, mesmo que ela exista no objeto ela tem que ser declarada no test
+
+var product = new Product()
+product.description = "Biscoito Trakinas"
+
+test("should return that the stock property is undefined", ()=> {
+	expect(product.stock).toBeUndefined()
+});
+
+test("should return that the description is defined", ()=> {
+	expect(product.description).toBeDefined()
+}); mesmo criando o product temos que definir a propriedade description
