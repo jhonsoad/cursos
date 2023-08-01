@@ -256,5 +256,3 @@ xhr.addEventListener("load", function(){
 	console.log(typeof pacientes);
 });
 xhr.send();
-
-

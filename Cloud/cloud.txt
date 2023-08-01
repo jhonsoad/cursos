@@ -1,0 +1,99 @@
+Modelos de cloud: 
+
+IaaS - Infrastruture as a Service
+A infraestrutura como serviço oferece recursos de computação, armazenamento e rede. Ou seja, esse modelo disponibiliza um ambiente com uma infraestrutura virtualizada. Ex; Amazon Web Service e Google Compute Engine
+
+
+PaaS - Platform as a Service
+Na Plataforma como serviço, temos um programa ou aplicativo entregue com o objetivo de facilitar a implementação de algum serviço,; ou seja, é criado um ambiente para programação e o deesenvolvimento de alguma solução. Ex: Heroku e Red Hat OpenShift
+ 
+SaaS - Software as a Service
+No software como serviço, o software é executado em um servidor, de forma que o cliente não precisa tê-lo instalado em sua maquina. Ex: Gupy e Trello
+
+Multicloud
+utilizar mais de um provedor de cloud
+
+Criar conta  > colocar alerta de custos > recurso mais usado criar maquina virtual (instancia EC2)
+user data colocar execuções apos criacao da instancia
+#!/bin/bash
+apt-get-update -y
+apt-get-install apache -y
+
+Nome e tags - escolher nome da instancia
+Imagens de aplicações e sistema operacional e aquitetura do sistema - escolher sistemado servidor linux AWS/ubuntu/windows/Red hat
+
+Tipo de instancia -  EX: T2.micro familias e configuracao da maquina
+
+Par de chaves de login - para se conectar a instancia é necessario um par de chavas ssh que são validos por região
+
+configuracao de rede - acesso ao servidor, criar grupo de seguranca permitir acesso ssh http https escolher ips que podem acessar o deixar como qualquer
+
+Configurar armazenamento Ex: quantidade e tipo SSD de uso geral gp2/gp3 de 8GB
+
+Security group - onde configuramos os tipos de acesso validos a instancia como http/https/ssh
+
+instancia EC2 - tem o custo sob demanda, vc paga o valor ao mes que usar, 
+instancias reservadas - proporcionam um desconto significativo de até 75%, reservando por exemplo para uso durante 2 anos, normalmente a reserva de de 1 a 3 anos
+instancia spot - usa capacidade ociosa de outros amnbientes que estão em uso, quando esses recursos ja contratados comecao a ser usados ela derruba sua aplicacao e sobe em outro servidor causando indisponibilidade temporaria
+
+Armazenamento
+S3 - repositorio para armazenamentode de arquivos
+
+EBS - discos de armazenamentos para SO
+
+EFS - comartilhamento de arquivos
+
+Classes de armazenamento - disponibilidade dos arqivos ex: a qualquer momento ou em 1 hora 10 horas para backup do backup arquivos que vc não precisa que estejam disponiveis rapido custo menor
+ 
+S3Intelligent-Tiering - economia automatica para dados com acessos desconhecidos ou variaveis
+
+S3 Standard - para dados acessados com frequencia
+
+S3 Standard-Infrequent Access (S3 Standard-IA) e S3 One Zone-Infrequent Access (S3 One Zone-IA) - para dados acessados com menos frequencia
+
+S3 Glacier Instant Retrieval - dados que precisam de acesso imediato
+
+S3 Glacier Flexible Retrieval (anteriormente S3 Glacier) - dados de longo prazo raramente acessados que não requerem acesso imediato
+
+S3 Glacier Deep Archive (S3 Glacier Deep Archive) - armazenamento de longo prazo e preservação digital com recuperação em horas com o menor custo de armazenamento na nuvem
+
+quando subir arquivos para o s3 mesmo colocando para eles serem publico é necessário habilitar a listas de controle de acesso (ACLs)
+
+File share - compartilhamento de arquivos
+Amazon Elastic File System (Amazon EFS)
+usa o nfs como protocolo de comunicação
+
+criando colocar nome para o sistema de arquivos
+
+Classe de armazenamento - usar uma AZ ou varias AZs, se for usar uma unica escolhe qual
+"Zona de Disponibilidade" (Availability Zone)
+ecolher a Virtual Private Cloud (VPC) é uma rede virtual como uma rede local para as VMs na cloud
+
+para se conectar via ssh a uma instancia EC2 va ate ah intancia e clique em conectar vai ter as formas de conexão disponiveis
+
+para montar um sistema de arquivos efs uma forma é se conectar a instancia EC2 via ssh intalar o pacote file share utils da aws, ir em anexar no efs e se for montar via ip selecionar e rodar o comnado que aparecer
+
+mesmo a instancia estando ok e o file share estando ok elas precisam estar com o mesmo grupo de seguranca
+
+VPC - Virtual Private Cloud
+é um servico que permite criarmos uma rede virtual isolada que funciona igual uma rede local de empresa, podemos configurar como queremos
+por default se tivermos isntancias na mesma regiao elas teram conectividade mas se estiverem em regiões diferentes é necessário criar um roteamento para que elas se comuniquem
+a VPC default que vem para cada região é diferente e o número de subnets é uma para cada zona de disponibilidade que tem na região
+NAT Gateway - Network Address Translation
+usada para que instancias em subnets privadas possam se comunicar com servicos fora da rede mas os servicos externos não podem iniciar comunicação com essas intancias
+
+IP Elastic
+São ips publicos, se esse ip estiver alocado a uma maquina ele não sera cobrado mas se ele estiver solto disponivel ele vai cobrar
+
+
+Banco de dados
+Relacionais - Aurora, RDS, Redshift
+No SQL - DynamoDB
+Crinado RDS: ecolhe configuração pad´rão onde definimos as configuracao ou a criação facil onde usamos as configs recomendadas
+ecolhemos o mecanismo e a versão que seria MySQL, MariaDB, SQLServer, etc..
+escolhemos o modelo que seria produção alta disponibilidade, Dev/Test ou nivel gratuito
+depois nome usuario e senha senhadowordpress
+ecolhe a instancia onde o banco ira rodar 
+ecolhe armazenamento : tipo, capacidade, escalabilidade automatica e limite da escalabilidade
+ecolhe a conectividade: se conectar ou não a um recurso de computação do EC2 se tiver a instancia ja criada; vpc não é possivel alterar depois, grupo de sub-redes de banco de dados, acesso publico ou não, grupo de seguranca vpc(firewall), zona de disponibilidade dentro da regiao escolhida, proxyRDS, autoridade de certificacao, porta de conexão, atenticacao para acessar o banco, monitoramento avancado
+apos cria do usamos o endpoint e porta para nos conectarmos ao banco
