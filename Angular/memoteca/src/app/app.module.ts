@@ -8,6 +8,8 @@ import { RodapeComponent } from './componentes/rodape/rodape.component';
 import { HtmCssComponent } from './HTM-CSS/htm-css/htm-css.component';
 import { AboutComponent } from './HTM-CSS/about/about.component';
 import { RouterModule } from '@angular/router';
+import { CriarPensamentoComponent } from './componentes/pensamentos/criar-pensamento/criar-pensamento.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { RouterModule } from '@angular/router';
     RodapeComponent,
     HtmCssComponent,
     AboutComponent,
+    CriarPensamentoComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
     AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,10 @@
+TS é componente
+HTML é template
+data binding vincular dados
+unidirecional ("one-way data binding")ex: Interpolation ({{}}): Usado para renderizar o valor de uma expressão em um template. Por exemplo: <p>{{ meuValor }}</p>.
+
+Binding de propriedade ([property]="value"): Permite vincular o valor de uma propriedade do componente a um atributo ou propriedade de um elemento HTML. Por exemplo: <input [value]="meuValor">.
+
+Binding de evento ((event)="handler()"): Permite vincular um evento do elemento HTML a um método no componente. Por exemplo: <button (click)="onClick()">.
+
+bidirecional ("two-way data binding") ex: ([(ngModel)]="value"): Combinação de binding de propriedade e binding de evento, permitindo que os dados fluam em ambas as direções entre o componente e o template. É frequentemente usado em elementos de formulário, como <input> e <select>.
