@@ -10,6 +10,7 @@ import { AboutComponent } from './HTM-CSS/about/about.component';
 import { RouterModule } from '@angular/router';
 import { CriarPensamentoComponent } from './componentes/pensamentos/criar-pensamento/criar-pensamento.component';
 import { FormsModule } from '@angular/forms';
+import { ListarPensamentoComponent } from './componentes/listar-pensamento/listar-pensamento.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     HtmCssComponent,
     AboutComponent,
     CriarPensamentoComponent,
+    ListarPensamentoComponent,
   ],
   imports: [
     BrowserModule,
