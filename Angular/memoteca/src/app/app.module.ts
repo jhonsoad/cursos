@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { CriarPensamentoComponent } from './componentes/pensamentos/criar-pensamento/criar-pensamento.component';
 import { FormsModule } from '@angular/forms';
 import { ListarPensamentoComponent } from './componentes/listar-pensamento/listar-pensamento.component';
+import { PensamentoComponent } from './componentes/pensamentos/pensamento/pensamento.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ListarPensamentoComponent } from './componentes/listar-pensamento/lista
     AboutComponent,
     CriarPensamentoComponent,
     ListarPensamentoComponent,
+    PensamentoComponent,
   ],
   imports: [
     BrowserModule,
