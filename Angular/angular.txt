@@ -20,3 +20,12 @@ diretiva *ngIf="listaPensamentos.lenght > 0, else semPensamento" usamos a condi�
 diretiva <div [ngClass]="{'classe-1': condição1, 'classe-2': condição2, ...}"></div> é usada para adicionar classes css em elementos html com base em condições especificas entre seu parenteses podemos colocar tambem "['class1', 'class2', dynamicClass]" array de classes e "getDynamicClasses()" chamar um metodo que retorna uma string o nome da classe css
 
 Decorator @Input permite que uma propriedade em seu componente recebe dados do componete pai que esta chamando esse componente com o seletor ex: no componete tem a propriedade @Input childValue: string; quando chamo o componente que tem essa propriedade em outro componente <app-child [childValue]="parentData"></app-child> eu passo essa propriedade que tem o @Input entre conchetes na chamada do componente e atrelo o valor dela com uma variavel do componente pai que nesse caso é a parentData.
+
+Para testar retorno de uma api rest podemos usar o json-server, precisamos criar uma interface com o formato do reponse que vira do backend para padronizar o formato, então a variavel que ira receber os dados desse response dev ser do tipo da interface criada
+
+Services as services criadas vem com o decorstor @Injectable({providedIn: 'root'}) esse decorator é usado em classes para indicar que essa classe pode ser usada com dependências indicando que essa classe pode ser usada como serviço que possui uma responsabilidade especifica e pode ser injetada em outros componentes, servicos ou modulos para fornecer funcionalidades reutilizaveis.
+A injeção de depêndencia é um padrão de design onde as dependências de uma classe são fornecidas externamente em vez de serem criadas dentro da própria classe, com a opção providedIn: 'root' dentro do injectable indica que o servico pode ser injetado em qualquer lugar da aplicação sem essa opção seria necessário fazer a configuração manual da injeção de dependencia em um modulo no array providers, a injeção de dependencia é feita via contructor ex:
+import { HttpClient } from '@angular/common/http'; 
+  constructor(private http: HttpClient) { }
+dessa forma o httpClient é injetado na minha service sem ele precisaria criar uma intancia do httpClient e passar as configs fazendo que outra instancia seja criada perderia a testabilidade e a modularidade do código criando a instancia em varios locais
+const httpClient = new HttpClient(/* opções */);
