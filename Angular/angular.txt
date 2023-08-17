@@ -12,6 +12,10 @@ bidirecional ("two-way data binding") ex: ([(ngModel)]="value"): Combinação de
 Rotas
 a criar o projeto é perguntado se queremos gerar o arquivo de rotas se for criado o nome dele é app-routing.module.ts, na const routes do tipo Routes que recebe um array "const routes: Routes = []" pra cada pagina que eu quiser acessar eu defino o path e o componente que quero atrelar ao path {path:'meuComponete',componente: meuComponente} nesse caso ao acessar o projeto e o complemento do path acessamos o componente ex: localhost:4200/meuComponente tambem temos que usar o seletor <app-routing></app-routing> para chamar esses componentes no app-component
 podemos criar um path com valor '' para ser o acesso padrao sem ter o /complemento, e para usar isso nos precisamos colocar a propriedade {path:'', redirectTo:'meuComponente', pathMatch: 'full'} para que o acesso a url sem o complementoredirecione para algum componente, e para chamar esse componentes adicionamos em um elemento html como um <button> a propriedade routerLink='meuComponete' com o valor de um path criado, em menus de navegacao podemos aplicar uma classe css ao link ativo atualmente com routerLinkActive="classe-ativa" coloque essa propriedade e a classe que que adicionar
+Além do routerLink que usamos no template, também podemos fazer a navegacao para outra tela pelo componente usando o navigate do servico Router, no constructor (private router: Router) importando do @angular/router 
+navegar(){
+	this.router.navigate(['/pathDoAppRoutingModule'])
+} ao chamar o metodo navegar vai abrir a tela informada
 
 diretiva *ngFor="let minhaVariavelDeclaradaAqui of meuArrayDeclaradoNoTs" com isso ele vai fazer um for criando os elementos html na quantidade do array
 
@@ -29,3 +33,45 @@ import { HttpClient } from '@angular/common/http';
   constructor(private http: HttpClient) { }
 dessa forma o httpClient é injetado na minha service sem ele precisaria criar uma intancia do httpClient e passar as configs fazendo que outra instancia seja criada perderia a testabilidade e a modularidade do código criando a instancia em varios locais
 const httpClient = new HttpClient(/* opções */);
+
+HttpClient é um servico para fazer requisições http e consumir apis para usalo importamos o seu modulo "HttpClientModule" no array de imports do app.module depois fazemos a injeção de dpendência dele via constructor e podemos usar seu metodohttp para fazer requicisões passando o metodo que usaremos nesse caso o get, podemos tipar o retorno usando o diamante "<>" e enter parenteses a url a da api ex: 
+listar(){
+	return this.http.get<Pensamento[]>(this.API)
+}
+criar(pensamento: Pensamento): Observable<Pensamento> {
+	return this.http.post<Pensamento>(this.API, pensamento);
+}
+esse metodo nos retornara um observable do tipo Pensamento[] e para eu conseguir receber esses dados eu preciso usar um subscribe para receber as informações de api que agora esta sendo observada, ao chamar esse metodo listar de uma service em um componete ficaria assim:
+ngOnInit(): void {
+	this.service.listar().subscribe((response)=> {
+		this.lista = response;
+	})
+}
+this.service.criar(this.pensamento).subscribe();
+
+usamos o subscribe para receber o retorno do listar() guardamos a resposta na propriedade response e colocamos em uma variavel global
+para fazermos o post precisamos passar como parametro a url da api e o dado que vamos colocar nela, e quando formos colocar
+para excluir um elemento com httpClient o meto precisa receberum parametro que nesse caso é o id vai se do tipo observable da interface criada, criamos uma variavel que recebe o a url da api com o id no final e retornamos a exclusão com http.delete
+excluir(id: number): Observable<Pensamento> {
+ const url = `${this.API}/${id}`
+ return this.http.delete<Pensamento>(url)
+}
+Classe ActivatedRoute é usada para acessar informações sobre a rota atualmente ativada no app, quando navegamos pelos componentes usando o roteamento cada visualização corresponde a uma rota especifica.  O ActivatedRoute fornece informações sobre essa rota, como parâmetros da URL, dados estáticos definidos na configuração de rota e muito mais, esses são alguns metodos dessa classe
+params: Um Observable que fornece os parâmetros da URL da rota.
+queryParams: Um Observable que fornece os parâmetros de consulta da URL da rota.
+data: Um Observable que fornece os dados estáticos definidos na configuração de rota.
+snapshot: Uma propriedade que fornece uma captura instantânea (snapshot) das informações da rota no momento em que o componente foi inicializado.
+url: Um Observable que fornece a URL da rota ativa.
+routeConfig: Proporciona acesso às informações de configuração da rota atual.
+const id = this.route.snapshot.paramMap.get('id') as string; // obtem o id do pensamento
+this.service.buscarPorId(Number(id)).subscribe((pensamento) => { 
+    this.pensamento = pensamento;
+});// chama o busca por id que retorna um observable e atribui o valor ao pensamento
+path: 'pensamentos/excluirPensamento/:id', component: ExcluirPensamentoComponent} para passar um valor variavel a rota usamos o ":"
+para editar usamos o http.put
+  editar(pensamento: Pensamento): Observable<Pensamento> {
+    const url = `${this.API}/${pensamento.id}`
+    return this.http.put<Pensamento>(url, pensamento)
+  }
+
+aula 5 mal explicada para excluir a url usar o http.delete mas o componente excluir-pensamento não explica pq cria propriedade pensamento e preenchge todos os campos como vazio
