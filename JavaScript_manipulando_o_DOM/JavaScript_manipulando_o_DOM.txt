@@ -1,5 +1,5 @@
 DOM - Document Object Model é o documento html da pagina
-No console do navegador ja podemos manipular a pagina renderizada com o document.getElementById('producao').value="Teste JavaScript" podemos alteraro o valor de um campo input da tela que tem esse id
+No console do navegador ja podemos manipular a pagina renderizada com o document.getElementById('producao').value="Teste JavaScript" podemos alterar o valor de um campo input da tela que tem esse id
 Métodos para selecionar elementos no HTML
 
 document.getElementByID(id) - Recupera um elemento pelo ID.
@@ -18,3 +18,11 @@ document.appendChild() - Adiciona um elemento HTML.
 document.removeChild() - Remove um elemento HTML.
 document.replaceChild() - Substitui um elemento HTML.
 document.createElement() - Cria um elemento HTML.
+
+ao capturar o .value de um input ele vem como string o objetivo é usar esse value para realizar operações é necessário input.value = parseInt(braco.value) - 1;
+array.forEach((elemento) => {
+    elemento.addEventListener('click', (evento) => {
+        const operacao = evento.target.textContent;
+        manipulaDados(operacao);
+    });
+})um array tem a propriedade forEach que declara uma arrow function passando um indice que sera a variavel que tera o valor de cada item do array no caso é a "elemento" chamando o addEventListener para esse elemento com click por exemplo e o evento como parametro da arrow functiondo addEventListener esse evento tem a propriedade .target que informa qual elemento html da pagina é e o text content se caso for um botao ou paragrafo que é o valor do texto. Para excluir um item do array podemos usa o array.splice(1,1) o primeiro parametro é a posição do indice a ser excluido e o segundo é a quantidade de indices a serem excluidos a partir do indice do primeiro paramentro

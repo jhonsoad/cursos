@@ -1,7 +1,24 @@
-const robotron = document.querySelector('#robotron');
+const subtrair = document.querySelector('#subtrair');
+const somar = document.querySelector('#somar');
+const braco = document.querySelector('#braco');
 
-robotron.addEventListener('click', dizOi)
+const controleAjuste = document.querySelectorAll('.controle-ajuste');
+const controleContador = document.querySelectorAll('.controle-contador');
 
-function dizOi() {
-    console.log('Olá mundo')
-}
+controleAjuste.forEach((elemento) => {
+    elemento.addEventListener('click', (evento) => {
+        const operacao = evento.target.textContent;
+        manipulaDados(operacao);
+    });
+})
+
+function manipulaDados(operacao) {
+    controleContador.forEach((elemento) => {
+        if (operacao == '+') {
+            elemento.value ++;
+        }else {
+            elemento.value --;
+        }
+    })
+};
+
