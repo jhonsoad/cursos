@@ -26,3 +26,16 @@ array.forEach((elemento) => {
         manipulaDados(operacao);
     });
 })um array tem a propriedade forEach que declara uma arrow function passando um indice que sera a variavel que tera o valor de cada item do array no caso é a "elemento" chamando o addEventListener para esse elemento com click por exemplo e o evento como parametro da arrow functiondo addEventListener esse evento tem a propriedade .target que informa qual elemento html da pagina é e o text content se caso for um botao ou paragrafo que é o valor do texto. Para excluir um item do array podemos usa o array.splice(1,1) o primeiro parametro é a posição do indice a ser excluido e o segundo é a quantidade de indices a serem excluidos a partir do indice do primeiro paramentro
+
+data atribbutes são atributos que podemos colocar em elementos html como se fosse classes mas as classes são usadas mais para atribuir estilos e o data atributte é usado mais para logica js mas pode ser utilizado para aplicar css tambem, no exemplo atribuimos a palavar data- e depois do traço o nome do data atributo que pode ou não ter valor colocando o =""
+<buttom class="controle-ajuste" id="controle" data-controle="-">-</buttom>
+<input type="text" class="controle-contador" value="00" data-contador>
+<buttom class="controle-ajuste" data-controle="+">+</buttom>
+no js podemos capturar esses elementos assim const controle = document.querySelectorAll('[data-controle]'); nesse caso como temos mais de 1 data-controle usamos o All, para obter os valores do data-atribbute no js usamos dataset assim: 
+const elemento = document.querySelector('#controle') elemento.dataset.controle; // tras o valor nesse caso o "-"
+se caso for um evento como o de click ficaria assim;
+controle.forEach((elemento) => {
+	elemento.addEventListener('click', (evento) => {
+		const operacao = evento.target.dataset.controle;
+	});
+});
