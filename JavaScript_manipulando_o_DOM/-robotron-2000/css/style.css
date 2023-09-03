@@ -4,9 +4,9 @@
     --main-preto: #000000;
 }
 
-* {
+/* * {
     box-sizing: border-box;
-}
+} */
 
 body {
     background: url(../img/fundo.jpg);
@@ -208,6 +208,54 @@ main {
     flex-basis: 35%;
     margin: 10px 0 0;
 }
+
+/****************************** Robotron cores *****/
+
+[data-cores='Amarelo']{
+    background-color: yellow;
+    [data-input]{
+        color: black;
+        width: 106px;
+    }
+}
+
+[data-cores='Azul']{
+    background-color: blue;
+    [data-input]{
+        width: 53px;
+    }
+}
+
+[data-cores='Branco']{
+    background-color: white;
+    [data-input]{
+        color: black;
+        width: 90px;
+    }
+}
+
+[data-cores='Preto']{
+    background-color: black;
+    [data-input]{
+        width: 68px;
+    }
+}
+
+[data-cores='Rosa']{
+    background-color: pink;
+    [data-input]{
+        width: 62px;
+        color: black;
+    }
+}
+
+[data-cores='Vermelho']{
+    background-color: red;
+    [data-input]{
+        width: 122px;
+    }
+}
+
 
 @media screen and (max-width: 1600px) {
     body { 
