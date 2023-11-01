@@ -1,4 +1,4 @@
-TS é componente
+TS é componente json-server --watch pets.json
 HTML é template
 data binding vincular dados
 unidirecional ("one-way data binding")ex: Interpolation ({{}}): Usado para renderizar o valor de uma expressão em um template. Por exemplo: <p>{{ meuValor }}</p>.
@@ -10,9 +10,9 @@ Binding de evento ((event)="handler()"): Permite vincular um evento do elemento 
 bidirecional ("two-way data binding") ex: ([(ngModel)]="value"): Combinação de binding de propriedade e binding de evento, permitindo que os dados fluam em ambas as direções entre o componente e o template. É frequentemente usado em elementos de formulário, como <input> e <select>.
 
 Rotas
-a criar o projeto é perguntado se queremos gerar o arquivo de rotas se for criado o nome dele é app-routing.module.ts, na const routes do tipo Routes que recebe um array "const routes: Routes = []" pra cada pagina que eu quiser acessar eu defino o path e o componente que quero atrelar ao path {path:'meuComponete',componente: meuComponente} nesse caso ao acessar o projeto e o complemento do path acessamos o componente ex: localhost:4200/meuComponente tambem temos que usar o seletor <app-routing></app-routing> para chamar esses componentes no app-component
+a criar o projeto é perguntado se queremos gerar o arquivo de rotas se for criado o nome dele é app-routing.module.ts, na const routes do tipo Routes que recebe um array "const routes: Routes = []" pra cada pagina que eu quiser acessar eu defino o path e o componente que quero atrelar ao path {path:'meuComponete',component: meuComponente} nesse caso ao acessar o projeto e o complemento do path acessamos o componente ex: localhost:4200/meuComponente tambem temos que usar o seletor <app-routing></app-routing> para chamar esses componentes no app-component
 podemos criar um path com valor '' para ser o acesso padrao sem ter o /complemento, e para usar isso nos precisamos colocar a propriedade {path:'', redirectTo:'meuComponente', pathMatch: 'full'} para que o acesso a url sem o complementoredirecione para algum componente, e para chamar esse componentes adicionamos em um elemento html como um <button> a propriedade routerLink='meuComponete' com o valor de um path criado, em menus de navegacao podemos aplicar uma classe css ao link ativo atualmente com routerLinkActive="classe-ativa" coloque essa propriedade e a classe que que adicionar
-Além do routerLink que usamos no template, também podemos fazer a navegacao para outra tela pelo componente usando o navigate do servico Router, no constructor (private router: Router) importando do @angular/router 
+Além do routerLink que usamos no template, também podemos fazer a navegacao para outra tela pelo component usando o navigate do servico Router, no constructor (private router: Router) importando do @angular/router 
 navegar(){
 	this.router.navigate(['/pathDoAppRoutingModule'])
 } ao chamar o metodo navegar vai abrir a tela informada
