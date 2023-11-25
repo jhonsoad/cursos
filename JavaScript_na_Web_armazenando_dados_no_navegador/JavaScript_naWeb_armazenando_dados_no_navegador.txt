@@ -1,0 +1,10 @@
+Por padrão quando um formulario é enviado ele recarrega a pagina e envia os dados para o cabeçalho(ulr) da pagina
+form.addEventListener('submit',(evento)=>{
+evento.preventDefault(); para que o formulario não recaregue a pagina e pegue o evento
+}) para pegar um campo de formulario pelo seu nome podemo usar o evento de submit apiturado evento.target['atributo name'.value
+Após capturar os valores digitados podemos colocalos na tela usando o createElement assim:
+const novoItem = document.createElement('li') criamos o elemento
+novoItem.classList.add('item') colocamos a classe
+novoItem.innerHTML = nome adicionamos o elemento ao html
+Para adicionar um elemto html dentro de outro usamos o appendChild()
+novoItem.appendChild(numeroItem) o numeroItem é um elemento <strong>1</strong> com fica assim: <li><strong>1<strong><li> podemos adicionar o texto do <li> assim: novoItem.innerHTML += nome nome é uma string, capturando um elemento existente na tela e usando o appendChild conseguimos inserir o elemto na tela
