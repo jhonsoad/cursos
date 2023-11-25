@@ -7,4 +7,35 @@ const novoItem = document.createElement('li') criamos o elemento
 novoItem.classList.add('item') colocamos a classe
 novoItem.innerHTML = nome adicionamos o elemento ao html
 Para adicionar um elemto html dentro de outro usamos o appendChild()
-novoItem.appendChild(numeroItem) o numeroItem é um elemento <strong>1</strong> com fica assim: <li><strong>1<strong><li> podemos adicionar o texto do <li> assim: novoItem.innerHTML += nome nome é uma string, capturando um elemento existente na tela e usando o appendChild conseguimos inserir o elemto na tela
+novoItem.appendChild(numeroItem) o numeroItem é um elemento <strong>1</strong> com fica assim: <li><strong>1<strong><li> podemos adicionar o texto do <li> assim: novoItem.innerHTML += nome nome é uma string, capturando um elemento existente na tela e usando o appendChild conseguimos inserir o elemento na tela
+localStorage do navegador
+localstorage.setItem(chave, valor) insere um obj no localStorage precisa passar chave e valor, chave é oq sera usado para acessar o obj e valor é oq sera inserido
+
+// Armazenando um valor simples
+localStorage.setItem('nome', 'Jhon');
+
+// Armazenando um número
+localStorage.setItem('idade', 25);
+
+// Armazenando um booleano
+localStorage.setItem('ativo', true);
+
+// Armazenando um array (convertido para string)
+const interesses = ['desenvolvimento', 'tecnologia'];
+localStorage.setItem('interesses', JSON.stringify(interesses));
+
+// Armazenando um objeto (convertido para string)
+const usuario = { nome: 'Jhon', idade: 25, ativo: true };
+localStorage.setItem('usuario', JSON.stringify(usuario));
+
+// Recuperando valores
+const nome = localStorage.getItem('nome');
+const idade = localStorage.getItem('idade');
+const ativo = localStorage.getItem('ativo');
+const interesses = JSON.parse(localStorage.getItem('interesses'));
+const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+localstorage.removeItem("curso") remove um obj do localStorage
+localStorage.clear() limpa geral o localStorage ele retrona vazio
+const totalItens = localStorage.length; retrona o número total de itens armazenados
+const primeiraChave = localStorage.key(0); retorna a chave do primeiro item
