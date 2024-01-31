@@ -9,7 +9,7 @@ import { HtmCssComponent } from './HTM-CSS/htm-css/htm-css.component';
 import { AboutComponent } from './HTM-CSS/about/about.component';
 import { RouterModule } from '@angular/router';
 import { CriarPensamentoComponent } from './componentes/pensamentos/criar-pensamento/criar-pensamento.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarPensamentoComponent } from './componentes/pensamentos/listar-pensamento/listar-pensamento.component';
 import { PensamentoComponent } from './componentes/pensamentos/pensamento/pensamento.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,7 +34,8 @@ import { EditarPensamentoComponent } from './componentes/pensamentos/editar-pens
     RouterModule.forRoot([]),
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
