@@ -1,0 +1,10 @@
+
+
+
+Angular
+//limpar cache
+npm cache clean --force --cache=`npm config get cache`
+
+
+// permitir execução de script para usuario atual powershell 
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
