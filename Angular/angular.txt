@@ -27,14 +27,14 @@ Decorator @Input permite que uma propriedade em seu componente recebe dados do c
 
 Para testar retorno de uma api rest podemos usar o json-server, precisamos criar uma interface com o formato do reponse que vira do backend para padronizar o formato, então a variavel que ira receber os dados desse response dev ser do tipo da interface criada
 
-Services as services criadas vem com o decorstor @Injectable({providedIn: 'root'}) esse decorator é usado em classes para indicar que essa classe pode ser usada com dependências indicando que essa classe pode ser usada como serviço que possui uma responsabilidade especifica e pode ser injetada em outros componentes, servicos ou modulos para fornecer funcionalidades reutilizaveis.
+Services as services criadas vem com o decorator @Injectable({providedIn: 'root'}) esse decorator é usado em classes para indicar que essa classe pode ser usada com dependências indicando que essa classe pode ser usada como serviço que possui uma responsabilidade especifica e pode ser injetada em outros componentes, servicos ou modulos para fornecer funcionalidades reutilizaveis.
 A injeção de depêndencia é um padrão de design onde as dependências de uma classe são fornecidas externamente em vez de serem criadas dentro da própria classe, com a opção providedIn: 'root' dentro do injectable indica que o servico pode ser injetado em qualquer lugar da aplicação sem essa opção seria necessário fazer a configuração manual da injeção de dependencia em um modulo no array providers, a injeção de dependencia é feita via contructor ex:
 import { HttpClient } from '@angular/common/http'; 
   constructor(private http: HttpClient) { }
 dessa forma o httpClient é injetado na minha service sem ele precisaria criar uma intancia do httpClient e passar as configs fazendo que outra instancia seja criada perderia a testabilidade e a modularidade do código criando a instancia em varios locais
 const httpClient = new HttpClient(/* opções */);
 
-HttpClient é um servico para fazer requisições http e consumir apis para usalo importamos o seu modulo "HttpClientModule" no array de imports do app.module depois fazemos a injeção de dpendência dele via constructor e podemos usar seu metodohttp para fazer requicisões passando o metodo que usaremos nesse caso o get, podemos tipar o retorno usando o diamante "<>" e enter parenteses a url a da api ex: 
+HttpClient é um servico para fazer requisições http e consumir apis para usalo importamos o seu modulo "HttpClientModule" no array de imports do app.module depois fazemos a injeção de dependência dele via constructor e podemos usar seu metodo http para fazer requisições passando o metodo que usaremos nesse caso o get, podemos tipar o retorno usando o diamante "<>" e enter parenteses a url da api ex: 
 listar(){
 	return this.http.get<Pensamento[]>(this.API)
 }
@@ -50,8 +50,8 @@ ngOnInit(): void {
 this.service.criar(this.pensamento).subscribe();
 
 usamos o subscribe para receber o retorno do listar() guardamos a resposta na propriedade response e colocamos em uma variavel global
-para fazermos o post precisamos passar como parametro a url da api e o dado que vamos colocar nela, e quando formos colocar
-para excluir um elemento com httpClient o meto precisa receberum parametro que nesse caso é o id vai se do tipo observable da interface criada, criamos uma variavel que recebe o a url da api com o id no final e retornamos a exclusão com http.delete
+para fazermos o post precisamos passar como parametro a url da api e o dado que vamos colocar nela
+para excluir um elemento com httpClient o metodo precisa receber um parametro que nesse caso é o id vai se do tipo observable da interface criada, criamos uma variavel que recebe o a url da api com o id no final e retornamos a exclusão com http.delete
 excluir(id: number): Observable<Pensamento> {
  const url = `${this.API}/${id}`
  return this.http.delete<Pensamento>(url)

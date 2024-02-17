@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pensamento } from './pensamento/pensamento';
 import { Observable } from 'rxjs';
 
@@ -9,11 +9,20 @@ import { Observable } from 'rxjs';
 export class PensamentoService {
 
   private readonly API = 'http://localhost:3000/pensamentos';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { } //O servico httpClient é usado para fazer requisições e consumir apis 
 
-  listar(): Observable<Pensamento[]> {
-    return this.http.get<Pensamento[]>(this.API);
-  }
+  listar(pagina: number): Observable<Pensamento[]> {
+    const intensPorPagina = 6; //GET /post?_page=7&_limit=20 formato para criar paginacao usando o json-server
+
+    let params = new HttpParams() //HttpParams é uma forma melhor de passarmos parametros na requisição ao inves de ficarmos concatenando
+      .set("_page", pagina) // metodo set serve para substituir um valor, passamos o nome do parametro e valor
+      .set("_limit", intensPorPagina);
+    
+    //return this.http.get<Pensamento[]>(`${this.API}?page=${pagina}&_limit=${intensPorPagina}`);
+    // o metodo http do httpClient é usado para fazer as requisições passando metodo que usaremos nesse aso o get, podemos tipar o retorno passando o diamnante "<>" e entre parenteses a url da api
+    
+    return this.http.get<Pensamento[]>(this.API, { params })
+  } //esse metodo nos retornara um observable do tipo Pensamento[] e para eu conseguir receber esses dados eu preciso usar um subscribe para receber as informações de api que agora esta sendo observada isso no local que eu chamar esse metodo
 
   criar(pensamento: Pensamento): Observable<Pensamento> {
     return this.http.post<Pensamento>(this.API, pensamento);
