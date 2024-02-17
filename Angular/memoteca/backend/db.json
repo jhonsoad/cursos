@@ -23,6 +23,24 @@
       "conteudo": "Amai ao próximo como a si mesmo",
       "autoria": "Jesus",
       "modelo": "modelo1"
+    },
+    {
+      "conteudo": "Que a força esteja com você",
+      "autoria": "Mestre Yoda!",
+      "modelo": "modelo1",
+      "id": 6
+    },
+    {
+      "conteudo": "to com sono",
+      "autoria": "@dg.rennan244",
+      "modelo": "modelo2",
+      "id": 7
+    },
+    {
+      "conteudo": "A persistência é o caminho do êxito",
+      "autoria": "charles chaplin",
+      "modelo": "modelo2",
+      "id": 8
     }
   ]
 }
