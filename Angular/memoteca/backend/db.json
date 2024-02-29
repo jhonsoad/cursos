@@ -33,13 +33,13 @@
       "conteudo": "Amai ao próximo como a si mesmo",
       "autoria": "Jesus",
       "modelo": "modelo1",
-      "favorito": false
+      "favorito": true
     },
     {
       "conteudo": "Que a força esteja com você",
       "autoria": "Mestre Yoda!",
       "modelo": "modelo1",
-      "favorito": false,
+      "favorito": true,
       "id": 6
     },
     {
@@ -60,7 +60,7 @@
       "conteudo": "Você não é todo mundo",
       "autoria": "Mãe",
       "modelo": "modelo3",
-      "favorito": false,
+      "favorito": true,
       "id": 9
     },
     {
@@ -102,7 +102,7 @@
       "conteudo": "Na minha máquina funciona!",
       "autoria": "Dev",
       "modelo": "modelo3",
-      "favorito": false,
+      "favorito": true,
       "id": 15
     },
     {
@@ -201,7 +201,7 @@
       "conteudo": "True love s2",
       "autoria": "S.O.J.A.",
       "modelo": "modelo2",
-      "favorito": "true"
+      "favorito": true
     }
   ]
 }
