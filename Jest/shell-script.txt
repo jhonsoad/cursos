@@ -1,0 +1,82 @@
+um script é um algoritmo que executa comandos do terminal um após outro para executar uma tarefa
+comando no git bash: vi script-git-clone.sh // abre o editor de texto vi dentro do git bash
+estrutura do script
+curl --insecure https://api.github.com/users/jhonsoad // curl faz requisição na url e retrona o json no terminal o --insecure é para desativar a verificacao ssl
+
+curl https://api.github.com/users/jhonsoad | awk '/git_url/{print}' // o pipe "|" é para rodar outro comando junto com o curl, awk é para manipular tetxtos depois dele dentro de aspas simples o // que indica um padra que se repete no texto e entre {} uma acão, nesse caso esta pegando o response do github encontrando a propriedade git_url e fazendo o print 
+
+curl -s // silencia o curl e a response vem sem as infos de tempo de resposta
+
+awk '/git_url/{print $2}' // o $2 informa que quer apenas o segundo campo da resposta ex: "git_url": "https://api.github.com/users/jhonsoad/repos" ele retorna apenas "https://api.github.com/users/jhonsoad/repos"
+
+sed é usado pra manipular texto 
+
+| sed 's/^"//g' // colocamos outra pipe e entre aspas simples o s é para substituir um valor por outro coloco entre as barras oq quero substituir no caso seria aspas duplas no inicio ^" e pelo qo queremos substituir colocamos entre as proximas // no caso como é para apagar não colocamos nada, e para acontecer com todas as urls retornadas colcamos g de global
+
+| sed 's/",$//g' // o s agr é usado para substituir virgula , e aspas duplas " no final com o $ 
+
+com isso o comando fica assim curl -s --insecure https://api.github.com/users/jhonsoad/repos | awk '/git_url/{print $2}' | sed 's/^"//g' | sed 's/",$//g'
+e a resposta é apenas git://github.com/jhonsoad/adopet-app.git
+git://github.com/jhonsoad/cursos.git
+
+#!/bin/bash // chama o bash para interpretar o arquivo
+mkdir meus-repositorios-git // cria uma pasta chamada meus-repositorios-git
+cd meus-repositorios-git // entra na pasta
+repositorios=$(comando curl) // precisa ser guardado em uma variavel o $() indica que sera a saida do curl
+for repositorio in $repositorios // faz um for nas urls retornadas
+do git clone $repositorio // faz o git clone de cada url, usa o $ para informar que é uma variavel
+done // done para finalizar 
+
+para salvar o arquivo apertar o esc :wq   o w para salvar e o q para sair do editor
+para rodar o arquivo digitamos 'bash script-git-clone.sh' o nome do arquivo
+
+instalar wsl para rodar o linux dentro do windows
+wsl -- install no cmd ou power shell como admin
+para executar basta rodar wsl e o terminal ja comeca a reconhecer comandos linux
+
+Linux
+VM Ubunto server 192.168.0.13/24
+user: jhon pass: soad@
+ip adrr - mostra ip
+ssh jhon@192.168.0.13 -> yes -> colocar senha - faz conexão ssh
+sudo apt update - 'sudo' para ter privilegio admin 'apt' é a ferramenta do debian de gerenciamento de pacote, o comando atualiza os pacotes locais com as versoes do servidor
+pwd - comando que mostra o diretorio que estou dentro do sistema no virtual box retorna '/home/jhon'
+a barra no windows é assim \ e no linux é assim / para navegar nos diretorios
+ls - mostra os arquivos no diretorio atualiza
+ls -a - mostra todos os arquivos até os ocultos
+touch + nomeDoArquivo.extensãoDoArquivo -  cria um arquivo
+touch + nome1 nom2 nome - cria varios arquivos
+touch + .arquivo - cria arquivo oculto
+ls -al - mostra todos os arquivos com detalhes deles como data e tamanho
+ll - comando ls -al simplificado
+ls + caminho - mostra conteudo do caminho especificado
+comando + --help - mostra os complementos que podem ser usados ao comando
+man + comando - abre um manual do comando para sairda tela q de quit
+clear ou ctrl+l - limpa o terminal
+cd etc - vai pro diretorio que fica as configs do sistema
+cd - volta pra home area
+cd -  - volta para o ultimo diretorio que estava
+cd ../../../ - volta 3 diretorios
+cd ~/nomePasta - volta para home area e a pasta q quizer
+mkdir nomeDaPasta - cria um diretorio
+mkdir -p nomedaPasta/subPasta/ - cria varios diretorios
+mkdir diretorio\ 1 - saida = 'diretorio 1' para nomes com espaco
+rmdir - apaga diretorio vazio
+rm - apaga arquivo
+rm -r nomeDiretorio - apaga diretorio e o conteudo, mas não alguns arquivos protegidos
+rm -rf nomeDiretorio - apaga o diretorio e o conteudo f --force
+rm -rf * - apaga arquivos e pastas do diretorio atual
+cp -r nomePastaCopiada nomePastaDestino - copia uma pasta e seu conteudo para dentro de outra, se a pasta de destino não exixtir ele cria ela e copia so o conteudo da pasta e não ela toda
+cp -r * pastaDestino - copia todos os arquivos do local onde esta para outra pasta
+cp -r pastaCopiada/* pasta destino - estando na pasta pai copia o conteudo de uma pasta para outra
+mv nomePasta pastaDestino -  move a pasta para pasta destino, se a pasta destino não exixtir ele cria ela e move apenas o conteudo da pasta e exclui ela, se os dois arquivos estiverem no mesmo nivel funciona como um renomeia arquivo ou pasta
+mv nomePasta/* pastaDestino - move todo conteudo de uma pasta para outra
+history - lista o historico dos comandos usados
+Globbing
+ls + arq* - lista todos os conteudos que comecao com arq
+ls + arq1? - lista todos os aquivos que comecem com arq1 e tenha mais 1 caractere ex:arq10,arq11
+ls arq?? - traz tudo que coeca com arq e tem 2 caracteres depois não 3 somente 2
+ls *1* - lista tudo que contenah o 1 com qualquer coisa antes ou depois
+ls ???[1-5] -- lista arquivos com 4 caracteres e que o ultimo seja de 1 a 5
+ls [1,5] - lista 1 e 5
+ls [A,a][a-c]- funciona com letras tambem

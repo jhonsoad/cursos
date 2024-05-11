@@ -7,4 +7,5 @@ npm cache clean --force --cache=`npm config get cache`
 
 
 // permitir execução de script para usuario atual powershell 
+executar => powershell => ctrl + shift + enter => executa como admin
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
