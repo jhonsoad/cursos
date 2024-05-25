@@ -13,19 +13,33 @@
         required
         minlength="2"
         #nome="ngModel"
-        >
+      >
 
       <div *ngIf="(nome?.invalid && nome?.touched)  || nome?.dirty">
         <app-mensagem *ngIf="nome?.errors?.['required']" mensagem="O campo de nome deve ser preenchido."></app-mensagem>
         <app-mensagem *ngIf="nome?.errors?.['minlength']" mensagem="O nome deve ter no mínimo 2 caracteres."></app-mensagem>
-
       </div>
 
     </div>
+
+    <!-- DATA DE NASCIMENTO -->
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input name="nascimento" id="nascimento" type="date" class="campo__escrita" ngModel/>
+        <input 
+          name="nascimento"
+          id="nascimento"
+          type="date"
+          class="campo__escrita"
+          ngModel
+          required
+          maiorIdadeValidator
+          #nascimento="ngModel"
+        >
+        <div *ngIf="(nascimento?.invalid && nascimento?.touched)  || nascimento?.dirty">
+          <app-mensagem *ngIf="nascimento?.errors?.['required']" mensagem="A data de nascimento deve ser preenchido."></app-mensagem>
+          <app-mensagem *ngIf="nascimento?.errors?.['maiorIdadeValidator']" mensagem="O usuário deve ter mais de 18 anos."></app-mensagem>
+        </div>
       </div>
 
       <!-- CONTATO -->

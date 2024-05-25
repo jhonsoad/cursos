@@ -117,3 +117,7 @@ no metodo cadastrar(form: NgForm) recebera um parametro o formulario
 <input name="nome" id="nome" #nome="ngModel">
 <span class="erro__texto" *ngIf="nome?.errors?.['required']">
 podemos usar uma variavel de referencia no input com o valor ngModel pra referenciala no lugar de f.controls['nome']
+
+ng g directives para criar diretivas personalizadas
+@Directive({
+  selector: '[maiorIdadeValidator]',
