@@ -104,3 +104,16 @@ O FormControlName é uma diretiva que sincroniza os controles em um formGroup at
 <p>{{ formulario.get('conteudo')?.value }}</p>
 
 Em um formulário reativo, você sempre pode acessar qualquer controle de formulário através do método get, passando para ele o campo e a propriedade que deseja acessar. Como queremos o valor do campo, devemos passar a propriedade value.
+
+Formulario template driven
+na tag form criamos uma variavel de referencia que cria uma instancia do ngForm ex: #f="ngForm" e importar o formsModule no module
+Colocamos o ngSubmit atrelado a um metodo na tag form ex:(ngSubmit)="cadastrar(f)"
+no metodo cadastrar(form: NgForm) recebera um parametro o formulario
+.ng-touched.ng-invalid:not(form){
+  border-color: red;
+  color: red;
+} altera um elemento de duas classes ja existentes em um form e o not é para não aplicar isso a tag form no caso sera somente para os inputs ng-touched/ng-untouched, ng-dirty/ng-pristine e ng-valid/ng-invalid
+<span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']">O campo de nome deve ser preenchido.</span> para usar mensagens de erro no campo é preciso colocar o ngModel, no input do tipo email podemos adicionara a diretiva validadora 'email' <input required email> ou usar o pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" com essa expressão regular os dois juntos não, para telefone tem essa expressão regular no pattern "(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"
+<input name="nome" id="nome" #nome="ngModel">
+<span class="erro__texto" *ngIf="nome?.errors?.['required']">
+podemos usar uma variavel de referencia no input com o valor ngModel pra referenciala no lugar de f.controls['nome']
