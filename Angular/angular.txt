@@ -119,5 +119,6 @@ no metodo cadastrar(form: NgForm) recebera um parametro o formulario
 podemos usar uma variavel de referencia no input com o valor ngModel pra referenciala no lugar de f.controls['nome']
 
 ng g directives para criar diretivas personalizadas
-@Directive({
-  selector: '[maiorIdadeValidator]',
+@Directive em vez de component
+
+Usar a api do viaCep para buscar o endereco digitado, pegar o retorno e usar o form.patchValue({endereco: res.logradouro}) para preencher os campos pela variavel de referencia #endereco="ngModel"
