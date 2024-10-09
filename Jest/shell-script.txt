@@ -69,6 +69,7 @@ rm -rf * - apaga arquivos e pastas do diretorio atual
 cp -r nomePastaCopiada nomePastaDestino - copia uma pasta e seu conteudo para dentro de outra, se a pasta de destino não exixtir ele cria ela e copia so o conteudo da pasta e não ela toda
 cp -r * pastaDestino - copia todos os arquivos do local onde esta para outra pasta
 cp -r pastaCopiada/* pasta destino - estando na pasta pai copia o conteudo de uma pasta para outra
+cp pastaCopiada . - traz pasta copiada para o diretorrio atual
 mv nomePasta pastaDestino -  move a pasta para pasta destino, se a pasta destino não exixtir ele cria ela e move apenas o conteudo da pasta e exclui ela, se os dois arquivos estiverem no mesmo nivel funciona como um renomeia arquivo ou pasta
 mv nomePasta/* pastaDestino - move todo conteudo de uma pasta para outra
 history - lista o historico dos comandos usados
@@ -80,3 +81,23 @@ ls *1* - lista tudo que contenah o 1 com qualquer coisa antes ou depois
 ls ???[1-5] -- lista arquivos com 4 caracteres e que o ultimo seja de 1 a 5
 ls [1,5] - lista 1 e 5
 ls [A,a][a-c]- funciona com letras tambem
+ls -lh /swap.img infos do arquivo com tamanho formatado ex: 3.9G
+cat file.txt file2.txt mostra conteudo de um arquivo ou varios arquivos
+grep file pesquisa padroes dentro de arquivos, consegue pesquisar o texto dentro do arquivo ou na saida de outro comando
+grep ssh services > listagem.txt procura 'ssh' dentro de algum arquivo e joga o retono da busca no arquivo listagem.txt com >> ele adiciona se não ele sobreescreve
+more file - faz paginação do conteudo na tela apresentando apenas o conteudo que cabe na tela
+dentro do comando more na paginação
+enter - avanca uma linha | espaco - avanca uma pagina | b - volta uma pagina | q - saido conteudo
+find / -name *conf busca arquivos passa o local onde sera feita a procura, o atributo usado nesse caso o name e o valor
+find . -amin -5 mostar arquivos criados/alterados nos ultimos 5 min
+find / -size +100M mostra aquivos com + de 100m
+redirecionamento
+cat /etc/passwd | grep jhon executa um comando e lista as infos do arquivo e depois executa o prox e procura algo no texto
+cat /etc/passwd | grep jhon > listagem monta a saida e ja guarda no destino
+| (pipe) pega a saida de um comando e joga pro proximo comando
+cat logs | cut -d " " -f6- mostra as infos do arquivo logs o cut corta parte das linhas usando o espaço " " como delimitador então so mostra os arquivos depois do sexto espaço até o fim -f6- poderia ser do -f1-3,6- do 1 ao 3 e depois do 6 ao fim
+cat american-english | grep -E "^computer$" o -E informa que vamos usar um aexpressao regular vai trazer um conteudo que comeca com computer "^" e termina com computer "$"
+head -n 50 /etc/services > edit1.txt pega a as primeiras 50 linhas do arquivo services e joga no arquivo edit1.txt
+editores de texto
+nano arq.txt abre o arquivo arq.txt no editor nano dentro do terminal
+pode usar o "vi" se não tiver o nano editor norma se apertar : vai pra funcao linha de comando dentro do editor
