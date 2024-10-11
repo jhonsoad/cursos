@@ -1,10 +1,10 @@
-Criar projeto angular com application=false para ser a casca dos projetos app mfe
+Criar projeto angular com ng new nome --create-application=false para criar um workspace que sera a casca dos projetos app mfe
 
-Criar pasta projets dentro do projeto rodar comando que cria aplicacao angular apenas e não workspace, comando ng g application nomeApp para criar aplicacao que ja ira sozinha para pasta projects criei um mfe-app e um mfe-host, para rodar o projeto colocar ng s mfe-app
+Cria aplicação angular com comando ng g application nomeApp para criar aplicacao dentro do workspace criado com new, a aplicacao criada ira para pasta projects do projeto casca, criei um mfe-app e um mfe-host dentro do workspace, para rodar um projeto app rodar o comando ng s nomeDoProjetoApp
 
-Instalar webpack comando npm i webpack-cli --save-dev
+Instalar webpack nos projetos app comando npm i webpack-cli --save-dev --project=nomeProjeto
 
-Adicionar arquivo webpack para uma aplicacao, comando ng add @angular-architects/module-federation --project nomeApp --port 4300 nome do projeto e a porta em que vai rodar
+Adicionar arquivo webpack para uma aplicacao, comando ng add @angular-architects/module-federation --project=nomeApp --port 4300 nome do projeto e a porta em que vai rodar
 
 Criar um modulo chamado profile para ser exposto no mfe-app comando ng g module profile --project=mfe-app
 

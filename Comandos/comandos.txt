@@ -2,6 +2,27 @@ Angular
 //limpar cache
 npm cache clean --force --cache=`npm config get cache`
 
+//reinstalar dependencias
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+
+//verificar dependencias desatualizadas
+npm outdated
+
+//atualiza pacotes para versoes seguras
+npm update
+
+//atualiza pacote especifico
+npm update "package_name"
+
+//atualiza pacotes incluindo grandes mudanças no package.json
+npx npm-check-updates -u depois npm install
+
+//auditar vulnerabilidades
+npm audit fix
+
+
 VSCode
 Shift + Alt + F
 
