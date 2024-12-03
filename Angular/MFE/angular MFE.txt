@@ -4,7 +4,7 @@ Cria aplicação angular com comando ng g application nomeApp para criar aplicac
 
 Instalar webpack nos projetos app comando npm i webpack-cli --save-dev --project=nomeProjeto
 
-Adicionar arquivo webpack para uma aplicacao, comando ng add @angular-architects/module-federation --project=nomeApp --port 4300 nome do projeto e a porta em que vai rodar
+Adicionar arquivo webpack para uma aplicacao, comando ng add @angular-architects/module-federation --project=nomeApp --port 4201 nome do projeto e a porta em que vai rodar, se o projeto casca for de uma versao diferente do projeto que esta sendo colocado como mfe execute esse comando e depois desinstale o ngx-build-plus e instale o da versao do angulardo projeto ex: npm remove ngx-build-plus depois npm install ngx-build-plus@14 --save-dev para usar a versao 14
 
 Criar um modulo chamado profile para ser exposto no mfe-app comando ng g module profile --project=mfe-app
 
@@ -59,3 +59,26 @@ loadRemoteModule({
 }).then((m) => m.ProfileModule).catch(err => console.error('Error loading remote module', err))
 }
 
+Para expor um component no mfe-app em webpack.config.js em exposes colocar './ProfileComponent': './projects/mfe-app/src/app/profile/profile.component.ts',
+
+Para consumir esse componente no mfe-host em um component no host ex: home no ts criar um viewclild
+para acessar uma um <div #mfeComponent></div> vazio criado no html
+ @ViewChild('mfeComponent', { read: ViewContainerRef }) mfeComponent!: ViewContainerRef; // busca a referencia no html e guarda na propriedade mfeComponent
+ 
+async loadComponent() {
+try {
+	const module = await loadRemoteModule({
+		remoteEntry: 'http://localhost:4300/remoteEntry.js',  
+		remoteName: 'mfeApp',  
+		exposedModule: './ProfileComponent' 
+	}); // carrega um component exposto pro um mfe e guarda em uma variavel
+
+	console.log('Módulo carregado:', module);
+
+	const componentRef = this.mfeComponent.createComponent(module.ProfileComponent); //cria e insere o componente no contêiner
+
+	console.log('Componente remoto criado:', componentRef);
+} catch (err) {
+	console.error('Erro ao carregar o componente remoto:', err);
+}
+}
