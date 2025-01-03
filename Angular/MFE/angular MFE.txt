@@ -4,12 +4,12 @@ Cria aplicação angular com comando ng g application nomeApp para criar aplicac
 
 Instalar webpack nos projetos app comando npm i webpack-cli --save-dev --project=nomeProjeto
 
-Adicionar arquivo webpack para uma aplicacao, comando ng add @angular-architects/module-federation --project=nomeApp --port 4201 nome do projeto e a porta em que vai rodar, se o projeto casca for de uma versao diferente do projeto que esta sendo colocado como mfe execute esse comando e depois desinstale o ngx-build-plus e instale o da versao do angulardo projeto ex: npm remove ngx-build-plus depois npm install ngx-build-plus@14 --save-dev para usar a versao 14
+Adicionar arquivo webpack para uma aplicacao, comando ng add @angular-architects/module-federation --project=nomeApp --port 4201 nome do projeto e a porta em que vai rodar, se o projeto casca for de uma versao diferente do projeto que esta sendo colocado como mfe execute esse comando e depois desinstale o ngx-build-plus e instale o da versao do angular do projeto ex: npm remove ngx-build-plus depois npm install ngx-build-plus@14 --save-dev para usar a versao 14
 
 Criar um modulo chamado profile para ser exposto no mfe-app comando ng g module profile --project=mfe-app
 
 Configurar modulo profile em imports colocar
- [ CommonModule, BrowserModule, RouterModule.forChild([ path: '', component: Profilecomponent ]) ] colocando a rota defaut para o componente que quero chamar
+ [ CommonModule, BrowserModule, RouterModule.forChild([{ path: '', component: ProfileComponent }]) ] colocando a rota defaut para o componente que quero chamar
 
 Criar componente no mfe-app ja vai usar o modulo criado com esse comando ficara na mesma pasta a profile ng g c profile --project=mfe-app
 
@@ -37,9 +37,9 @@ Ao rodar o projeto na porta 4300 consigo acessar o javascript exposto em localho
 
 Configurar webpack do mfe-host descomentar parte de exemplo 'For hosts'
 remotes: {
-	"mfeApp": "mfeApp@http://localhost:4300/remoteEntry.js",
+	"mfeApp": "http://localhost:4300/remoteEntry.js",
 },
-passar nome unico no caso mfeApp, e depois passar o nome do microfrontenf@ o domino
+passar nome unico no caso mfeApp, e depois passar a url com o javascript exposto
 
 Colocar no output o scriptType: "text/javascript"
 apaga o library: { type: "module" },
@@ -50,7 +50,7 @@ Configura rota desse componente path '', component: HomeComponent
 
 Criar botão no app.component do host para acessar a home do mfe-host e para acessar o profile do mfe-app com outlet
 
-Configra a rota no mfe-host
+Configura a rota no mfe-host
 { path: 'profile', loadChildren: () => 
 loadRemoteModule({
   remoteEntry: 'http://localhost:4300/remoteEntry.js', // URL do mfe app
