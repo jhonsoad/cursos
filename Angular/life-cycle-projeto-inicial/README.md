@@ -34,3 +34,5 @@ ngOnChanges(changes: SimpleChanges): void {
         this.valorItem = this.itemQueVaiSerEditado?.nome;
     }
 }
+
+DoCheck é executado em qualquer evento dentro do componente e não somente no input como é o caso do onChanges
