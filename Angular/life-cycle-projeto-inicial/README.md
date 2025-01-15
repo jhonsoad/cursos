@@ -36,3 +36,23 @@ ngOnChanges(changes: SimpleChanges): void {
 }
 
 DoCheck é executado em qualquer evento dentro do componente e não somente no input como é o caso do onChanges
+
+no input checkbox posso usar o (change) para verificar uma mudanca e chamar um metodo quando isso acontecer e usar o[checked] para alter o valor de uma peopriedade ao ser marcado ou desmarcado
+  [checked]="item.comprado"
+  (change)="checarItem()"
+
+  AfterViewInit:
+
+Este hook é acionado após a visualização do componente ser totalmente inicializada. É útil para realizar ações específicas relacionadas à visualização, como manipulações no DOM ou integrações com bibliotecas externas.
+
+AfterViewChecked:
+
+Ativado após cada verificação da visualização do componente, permitindo a execução de ações adicionais nesse momento específico do ciclo de vida.
+
+AfterContentInit:
+
+Executado após a inicialização do conteúdo do componente. É útil quando operações dependem do conteúdo projetado no componente.
+
+AfterContentChecked:
+
+Ativado após cada verificação do conteúdo do componente, proporcionando oportunidades para ações adicionais relacionadas ao conteúdo.
