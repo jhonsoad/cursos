@@ -89,7 +89,7 @@ São ips publicos, se esse ip estiver alocado a uma maquina ele não sera cobrad
 Banco de dados
 Relacionais - Aurora, RDS, Redshift
 No SQL - DynamoDB
-Crinado RDS: ecolhe configuração pad´rão onde definimos as configuracao ou a criação facil onde usamos as configs recomendadas
+Crinado RDS: ecolhe configuração padrão onde definimos as configuracao ou a criação facil onde usamos as configs recomendadas
 ecolhemos o mecanismo e a versão que seria MySQL, MariaDB, SQLServer, etc..
 escolhemos o modelo que seria produção alta disponibilidade, Dev/Test ou nivel gratuito
 depois nome usuario e senha senhadowordpress

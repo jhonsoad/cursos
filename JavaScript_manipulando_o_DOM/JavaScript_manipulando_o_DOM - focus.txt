@@ -1,0 +1,22 @@
+Focus
+
+Diferença entre DOM e document
+
+DOM (Document Object Model):
+
+O DOM é uma interface de programação para documentos HTML e XML. Ele representa a estrutura da página como uma árvore de objetos, onde cada elemento HTML é um nó nessa árvore.
+Em termos simples, o DOM é uma representação estruturada do conteúdo da página, que permite ao JavaScript acessar e manipular elementos, estilos e conteúdo dinamicamente.
+O DOM não é JavaScript em si, mas sim uma interface que o JavaScript utiliza para interagir com a página.
+document:
+
+document é um objeto global no JavaScript que representa a página HTML carregada no navegador.
+Ele é o ponto de entrada principal para acessar e manipular o DOM.
+Através do objeto document, você pode utilizar métodos como querySelector, getElementById, createElement e muitos outros para selecionar, criar e modificar elementos do DOM.
+Em outras palavras o document é um objeto que faz parte do DOM e dentro desse objeto existem varias funções para manipular o proprio DOM.
+Em resumo:
+
+O DOM é o modelo estruturado da página.
+document é o objeto que fornece os meios para interagir com esse modelo.
+Exemplo prático:
+
+Quando você usa document.querySelector('.minha-classe'), está utilizando o objeto document para acessar o DOM e selecionar o primeiro elemento que possui a classe "minha-classe".
