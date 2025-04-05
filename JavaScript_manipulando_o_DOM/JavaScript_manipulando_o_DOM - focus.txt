@@ -29,3 +29,18 @@ titulo.innerHTML = `
 Otimize sua produtividade,<br>
 <strong class="app__title-strong">mergulhe no que importa.</strong>
 `
+
+Criando um Objeto ‘Audio’
+Para criar um novo objeto ‘Audio’, podemos simplesmente usar a seguinte sintaxe:
+
+const audioElement = new Audio('caminho/do/arquivo-de-audio.mp3');
+Copiar código
+Substitua 'caminho/do/arquivo-de-audio.mp3' pelo caminho real do arquivo de áudio que você deseja reproduzir.
+
+Controles básicos de áudio
+Após criar um objeto ‘Audio’, podemos controlar sua reprodução e outras propriedades usando métodos e propriedades disponíveis.
+
+play(): inicia a reprodução do áudio;
+pause(): pausa a reprodução do áudio;
+currentTime: propriedade que retorna ou define a posição atual de reprodução do áudio, em segundos;
+volume: propriedade que retorna ou define o nível de volume do áudio, variando de 0 a 1.
