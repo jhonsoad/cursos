@@ -11,7 +11,7 @@ function tocaSom(seletorAudio) {
 
  const listaDeTeclas = document.querySelectorAll('.tecla');
  
- for (contador = 0; contador < listaDeTeclas.length; contador ++) {
+ for (var contador = 0; contador < listaDeTeclas.length; contador ++) {
 
     const tecla = listaDeTeclas[contador];
     const instrumento = tecla.classList[1];

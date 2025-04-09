@@ -3,7 +3,7 @@ const listaDeBotoes = document.querySelectorAll('input[type=button]');
 
 let inputTel = document.querySelector('input[type=tel]');
 
-for (contador = 0; contador < listaDeBotoes.length; contador ++) {
+for (var contador = 0; contador < listaDeBotoes.length; contador ++) {
     
     const botao = listaDeBotoes[contador];
     
