@@ -1,0 +1,30 @@
+Typescript: aplicando orientação a objetos no Front-end
+
+Diferença de Paradigma funcional e Orientação a Objetos
+
+Orientação a Objetos (OO):
+Foco: Objetos com dados e comportamentos.
+Ideia: Modelar o mundo como coisas que fazem ações e têm características.
+Estado: Objetos geralmente mudam ao longo do tempo.
+Organização: Classes agrupam dados e funções.
+
+Programação Funcional (PF):
+Foco: Funções que transformam dados.
+Ideia: Computar como avaliar expressões matemáticas.
+Estado: Dados geralmente não mudam (imutáveis).
+Organização: Código estruturado em funções.
+
+Diferenca função e metodo
+Função:
+É um bloco de código independente que realiza uma tarefa específica e pode receber argumentos e retornar um valor.
+É definida no escopo global ou dentro de um módulo ou outro escopo léxico.
+Não está intrinsecamente associada a um objeto específico.
+Para ser executada, é chamada diretamente pelo seu nome, passando os argumentos necessários.
+
+Método:
+É uma função que está associada a um objeto (ou a uma instância de uma classe).
+É definida dentro da declaração de uma classe ou de um objeto literal.
+Geralmente opera sobre os dados (propriedades) desse objeto, acessando-os através da palavra-chave this.
+Para ser executado, é chamado através do objeto ao qual pertence, usando a notação de ponto (objeto.metodo()).
+
+Portanto, a principal diferença é que um método é uma função que pertence a um objeto, enquanto uma função existe por si só em um determinado escopo. Em um contexto de programação orientada a objetos, os métodos são as formas como os objetos interagem e manipulam seus próprios dados.
