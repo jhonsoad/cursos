@@ -28,3 +28,72 @@ Geralmente opera sobre os dados (propriedades) desse objeto, acessando-os atrav�
 Para ser executado, é chamado através do objeto ao qual pertence, usando a notação de ponto (objeto.metodo()).
 
 Portanto, a principal diferença é que um método é uma função que pertence a um objeto, enquanto uma função existe por si só em um determinado escopo. Em um contexto de programação orientada a objetos, os métodos são as formas como os objetos interagem e manipulam seus próprios dados.
+
+modificadores de acesso para propriedades e metodos
+public: Acessível em qualquer lugar (padrão).
+private: Acessível apenas dentro da própria classe.
+protected: Acessível dentro da classe e em suas subclasses.
+
+Encapsulamento e Acesso Seguro (TypeScript)
+Encapsulamento: Proteger dados internos (private) da classe contra acesso e modificação direta externa.
+
+Objetivo:
+
+Integridade dos Dados: Controlar como os dados são alterados (dentro da classe).
+Ocultar Complexidade: Esconder detalhes internos, facilitando o uso da classe.
+Manutenção/Refatoração: Alterações internas não quebram o código externo (se a interface pública se mantiver).
+Acesso Seguro (Getters): Métodos public para obter (ler) valores de propriedades private de forma controlada.
+
+Vantagens dos Getters:
+
+Controle e Validação: Lógica extra antes de retornar o valor (formatação, segurança).
+Impedir Modificação Direta: Apenas leitura, a alteração requer métodos específicos (setters).
+Abstração: A forma interna do dado pode mudar sem afetar o uso externo.
+Exemplo Resumido:
+
+TypeScript
+
+class MinhaClasse {
+  private _valor: number; // Propriedade privada (convenção com _)
+
+  constructor(valorInicial: number) {
+    this._valor = valorInicial;
+  }
+
+  // Getter público para acessar o valor de forma segura
+  public get valor(): number {
+    // Aqui podemos adicionar lógica antes de retornar
+    return this._valor;
+  }
+
+  // (Opcional) Setter público para modificar o valor de forma controlada
+  public set valor(novoValor: number) {
+    if (novoValor >= 0) {
+      this._valor = novoValor;
+    } else {
+      console.error("Valor inválido!");
+    }
+  }
+}
+
+let obj = new MinhaClasse(10);
+
+// Acesso seguro através do getter
+console.log(obj.valor); // Saída: 10
+
+// Tentativa de acesso direto (erro!)
+// console.log(obj._valor);
+
+// Modificação segura através do setter (se definido)
+obj.valor = 25;
+console.log(obj.valor); // Saída: 25
+
+obj.valor = -5; // Saída: Valor inválido!
+console.log(obj.valor); // Saída: 25 (valor não foi alterado
+
+static em Métodos:
+
+Indica que o método pertence à classe em si, não a uma instância específica dela.
+É chamado diretamente na classe (NomeDaClasse.metodoStatic()).
+Não tem acesso ao this da instância.
+Útil para funções utilitárias relacionadas à classe, sem depender de um objeto particular.

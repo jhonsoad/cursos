@@ -1,11 +1,12 @@
-import { GrupoTransacao } from "./GrupoTransacao";
-import { TipoTransacao } from "./TipoTransacao";
-import { Transacao } from "./Transacao";
+import { Armazenador } from "./Armazenador";
+import { GrupoTransacao } from "./GrupoTransacao.js";
+import { TipoTransacao } from "./TipoTransacao.js";
+import { Transacao } from "./Transacao.js";
 
 export class Conta {
-    nome: string
-    saldo: number = JSON.parse(localStorage.getItem("saldo")) || 0;
-    transacoes: Transacao[] = JSON.parse(localStorage.getItem("transacoes"),
+    protected nome: string
+    protected saldo: number = Armazenador.obter("saldo") || 0;
+    protected transacoes: Transacao[] = Armazenador.obter(("transacoes"),
      (key: string, value: any) => { // Este é o segundo argumento da função JSON.parse(), chamado de reviver function. Essa função é chamada para cada par chave-valor encontrado durante a análise do JSON. O seu propósito aqui é realizar uma transformação específica
         if (key === "data") {
             return new Date(value);
@@ -16,6 +17,11 @@ export class Conta {
     constructor(nome: string) { // o construtor informa que para criar uma conta so é obrigatorio o nome
         this.nome = nome;
     }
+
+    public getTitular() {
+        return this.nome
+    }
+
     getGruposTransacoes(): GrupoTransacao[] {
         const gruposTransacoes: GrupoTransacao[] = [];
         const listaTransacoes: Transacao[] = structuredClone(this.transacoes);
@@ -45,7 +51,7 @@ export class Conta {
         return new Date();
     }
 
-    registrarTransacao(novaTransacao: Transacao): void {
+    public registrarTransacao(novaTransacao: Transacao): void {
         if (novaTransacao.tipoTransacao == TipoTransacao.DEPOSITO) {
             this.depositar(novaTransacao.valor);
         } 
@@ -59,10 +65,10 @@ export class Conta {
 
         this.transacoes.push(novaTransacao);
         console.log(this.getGruposTransacoes());
-        localStorage.setItem("transacoes", JSON.stringify(this.transacoes));
+        Armazenador.salvar("transacoes", JSON.stringify(this.transacoes));
     }
 
-    debitar(valor: number): void {
+    private debitar(valor: number): void {
         if (valor <= 0) {
             throw new Error("O valor a ser debitado deve ser maior que zero!");
         }
@@ -71,16 +77,16 @@ export class Conta {
         }
     
         this.saldo -= valor;
-        localStorage.setItem("saldo", this.saldo.toString());
+        Armazenador.salvar("saldo", this.saldo.toString());
     }
 
-    depositar(valor: number): void {
+    private depositar(valor: number): void {
         if (valor <= 0) {
             throw new Error("O valor a ser depositado deve ser maior que zero!");
         }
     
         this.saldo += valor;
-        localStorage.setItem("saldo", this.saldo.toString());
+        Armazenador.salvar("saldo", this.saldo.toString());
     }
 }
 
