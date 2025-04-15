@@ -5,8 +5,8 @@ import { Transacao } from "./Transacao.js";
 
 export class Conta {
     protected nome: string
-    protected saldo: number = Armazenador.obter("saldo") || 0;
-    protected transacoes: Transacao[] = Armazenador.obter(("transacoes"),
+    protected saldo: number = Armazenador.obter<number>("saldo") || 0;
+    protected transacoes: Transacao[] = Armazenador.obter<Transacao[]>(("transacoes"),
      (key: string, value: any) => { // Este é o segundo argumento da função JSON.parse(), chamado de reviver function. Essa função é chamada para cada par chave-valor encontrado durante a análise do JSON. O seu propósito aqui é realizar uma transformação específica
         if (key === "data") {
             return new Date(value);
