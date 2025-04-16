@@ -97,3 +97,18 @@ Indica que o método pertence à classe em si, não a uma instância específica
 É chamado diretamente na classe (NomeDaClasse.metodoStatic()).
 Não tem acesso ao this da instância.
 Útil para funções utilitárias relacionadas à classe, sem depender de um objeto particular.
+
+
+export class ContaPremium extends Conta {
+    constructor(nome: string) {
+        super(nome); // Chama o construtor da classe Conta
+        // ... outras inicializações específicas da ContaPremium ...
+    }
+	
+	super.registrarTransacao(transacao) // para usar um metodo da classe pai
+
+extends:
+ estabelece uma relação de "é um" entre a classe filha e a classe pai, permitindo que a filha herde as características da pai.
+
+super:
+ permite que a classe filha acesse e execute métodos (incluindo o construtor) definidos na sua classe pai, possibilitando a extensão e modificação do comportamento herdado.
