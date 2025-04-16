@@ -112,3 +112,18 @@ extends:
 
 super:
  permite que a classe filha acesse e execute métodos (incluindo o construtor) definidos na sua classe pai, possibilitando a extensão e modificação do comportamento herdado.
+ 
+Decorator
+Um decorator é essencialmente uma função que recebe informações sobre o elemento ao qual está anexado (a target da classe, o nome da propertyKey, o descriptor do método, etc.) e pode usar essas informações para alterar o comportamento desse elemento.
+
+function MeuDecorator(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
+  // Lógica do decorator aqui
+}
+
+target: Para um método estático, é a função construtora da classe. Para um método de instância, é o protótipo da classe.
+propertyKey: O nome do método que está sendo decorado (uma string ou um símbolo).
+descriptor: Um objeto que contém informações sobre a propriedade (no caso de um método, ele descreve como o método funciona). As propriedades mais importantes são:
+value: A função original do método.
+writable: Um booleano indicando se o valor pode ser alterado.
+enumerable: Um booleano indicando se a propriedade aparece durante a enumeração de propriedades do objeto.
+configurable: Um booleano indicando se a propriedade pode ser deletada ou se seus atributos (exceto writable se configurable for false) podem ser modificados.
