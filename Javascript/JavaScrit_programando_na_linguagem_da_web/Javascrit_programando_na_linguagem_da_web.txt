@@ -1,0 +1,258 @@
+DOM (Document Object Model) - representação do html para o javascript
+acessível pela palavra document, se colocarmos document no console do
+navegador apresentara todo nosso htlm da pagina
+
+textContent
+Algumas tags como h1 p span possuem conteudo de texto que conseguimos acessar
+através do .textContent. cria variavel titulo e atera o texto do h1 para banana
+var titulo = document.querySelector("h1")
+titulo.textContent = "Banana"
+O ideal é usar uma classe ou id como boa pratica para buscar no querySelector
+podemos também capturar o valor do textContent
+
+var paciente = document.querySelector("#primeiro-paciente");
+var tdPeso = paciente.querySelector(".info-peso");
+var peso = tdPeso.textContent;
+
+var paciente recebe o valor de uma tabela tag <tr> que tem o id primeiro-paciente
+var tdPeso recebe o valor da tag <td> que tem a classe info-peso
+var peso recebe o conteudo de texto da tag td pelo textContent
+
+função toFixed(); que recebe como parametro a quantidade de casas decimais
+a serem exibidas depois do ponto
+imc = 12.92374
+imc.toFixed(2);
+imc === 12.92
+
+Para modificar o estilo de um elemento podemos usar o .style direto no javascript
+paciente.style.color = "red"; paciente é uma variavel com valor de um elemento
+HTML com .style acessamos os estilo desse elemento e com .color acessamos um
+atributo de style e com = atribuimos a cor red para o elemento
+se fromos usar uma propriedade css com duas palavras como background-color
+escrevemos assim paciente.backgroundColor = "red"; com camelcase
+mas o idela é usar o classList com uma classe css.
+
+addEventListener() é um escutador de eventos que escutara as interações dos
+usuários no seu parametro informamos o evento que queremos escutar e depois
+separado por virgula colocamos a função que sera executada se o evento ocorrer
+botaoAdicionar.addEventListener("click", function()){exemplo com função anonima
+    console.log("Oi cliquei no botão");
+});
+botaoAdicionar.addEventListener("click", mostraFrase)
+primeiro parametro evento e segundo parametro a função
+
+na função de que chamamos para ser executa após o evento podemos usar
+event.preventDefault, para que o evento não faça o comportamento padrão como
+recarregar a pagina apos clicar em um formulario, para isso adicionamos event
+como parametro da funcao e dentro dela colocamos o event capturado.preventDefault
+botaoAdicionar.addEventListener("click", function(event){
+    event.preventDefault();
+
+através do formulário, temos acesso aos seus inputs, acessamos através de sua
+propriedade name, a varialvel form tem o valor de um formulario com inputs e botao
+var form = document.querySelector("#form-adiciona");
+var nome = form.nome.value;
+podemos acessar o name de cada input desta forma e seu valor que é digitado pelo
+pelo usuario é guaradado na variavel
+
+creatElement("") uma função para criar elementos no mundo HTML
+var pacienteTr = document.createElement("tr"); cria uma tag tr como valor de uma var
+var nomeTd = document.createElement("td"); criamos uma td da mesma forma
+nomeTD.textContent = nome; adiona valor da var nome que é o valor do input
+digitado pelo usuário
+
+appendChild("") essa função adiciona um elemento dentro de outro
+pacienteTr.appendChild(nomeTd); nesse caso adiona a var nomeTd que tem o valor
+de uma tag td criada no javascript com o valor do input e a coloca como elemento
+filho da var pacienteTr que tambem foi criada com no javascript e tem o valor da
+tag tr, nmas apara exibi-las na no browser é necessario colocalas com elemento
+filho de uma tag existente no html capturando o valor de uma tbody por exemplo
+colocando em uma var e usando appendChild.
+
+event shortcut para cada elemento existente no javascript há a propriedade
+on + nomeDoEvent como onclick, onmouseover para o evento mouseover a limitação
+é que se usarmos uma após a outra sobreescreve e so a ultima é valida 
+botao.onclick = botaoHandler;
+botao.onclick = outroHandler; // substitui botaoHandler
+com addEventListener criamos uma fila de execução
+botao.addEventListener('click', botaoHandler);
+botao.addEventListener('click', outroHandler);
+
+Boas praticas javascript, dividir o codigo em varias funções menores e criar
+outros arquivos .js não deixando que uma funcão fique responsável por muitas
+funcionalidades
+
+Objetos no javascript
+para criar objetos usamos chaves{}, nesse caso criamos a função que recebe a var
+form como parametro form é a varialvel que recebeu o valor de um formulario e
+dele extraimos os dados, declaramos uma varialvel que recebe entre chaves os
+dados dentro das chaves passamos as propriedades do objeto, passamos o nome
+e o valor com o dois pontos ':' após o nome e separamos cada propriedade por
+virgula, depois retornamos o valor desse objeto, a função então sera responsavel
+de retornar esse objeto criado, depois podemos criar uma var paciente que recebe
+o valor dessa funcao
+
+function obtemPacienteDoFormulario(form) {
+
+    var paciente = {
+        nome: form.nome.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value
+    }
+    return paciente;
+}
+var paciente = obtemPacienteDoFormulario(form);
+
+Com isso a var paciente vai ter todos os valores e podem ser acessados com
+paciente.nome ou paciente.peso
+
+form.reset();
+form é uma variavel que recebeu o valor de um formulario e se usarmos a função
+reset nele ele vai resetar e limpar os campos pode ser chamada ao enviar o
+formulario por exemplo
+
+Se no meio da função tiver um if e ele for executado com um return vazio no fim
+o codigo que estiver abaixo na mesma função não é executado
+
+Se o if tiver apenar 1 função ex:
+if(!validaPeso(paciente.peso)) {
+        erros.push("Peso é inválido");
+    }
+Podemos colocar tudo em uma linha sem colocar as chaves que o JS entende ex:
+if(!validaPeso(paciente.peso)) erros.push("Peso é inválido");
+
+O método forEach() executa uma dada função em cada elemento de um array
+const array1 = ['a', 'b', 'c'];
+
+array1.forEach(element => console.log(element));
+
+// Expected output: "a"
+// Expected output: "b"
+// Expected output: "c"
+
+Para remover do html as tags li que foram criadas dentro da ul usamos o
+ul.innerHTML = ""; ul é a var que tem o valor do elemento html ul
+e está atribuindo para ele uma string vazia o que faz com que as tags
+ filhas sejam apagadas
+ 
+ dblclick é o nome do evento de duplo clique
+ 
+ função remove() é responsavel por remover elementos html ex:
+ var t = document.querySelector("h1");
+ t.remove();
+ Com isso é removido o elemento h1 da pagina
+ 
+
+ var pacientes = document.querySelectorAll(".paciente");
+
+pacientes.forEach(function(paciente) {
+    paciente.addEventListener("dblclick", function() {
+        this.remove();
+    });
+});
+this é uma palavra de contexto ligada com quem acionou o evento,
+ a quem o evento está atrelado. Como o evento está atrelado ao paciente,
+ o this fará referência a ele.
+ 
+event.target (evento.alvo)
+var tabela = document.querySelector("table");
+
+tabela.addEventListener("dblclick", function(event) {
+    event.target.remove();
+});
+target é uma propriedade de event referente a um objeto para o qual um evento foi disparado
+nesse exemplo se refere ao elemento que recebe um duplo click
+
+parentNode
+Utilizado para se referir ao elemento pai de outro elemento
+var tabela = document.querySelector("table");
+
+tabela.addEventListener("dblclick", function(event) {
+    var alvoEvento = event.target;
+    var paiDoAlvo = alvoEvento.parentNode; // TR = paciente = remover 
+    paiDoAlvo.remove();
+});
+
+setTimeout()função que faz uma função ser executada despois de um tempo definido
+var tabela = document.querySelector("#tabela-pacientes");
+
+tabela.addEventListener("dblclick", function(event) {
+    event.target.parentNode.classList.add("fadeOut");
+
+    setTimeout(function() {
+        event.target.parentNode.remove();
+    }, 500);
+
+});Coloca uma classe que aplica uma opacidaded 0 a um elemento em uma transição de 0.5s
+o set timeout espera 5 segundos e remove o elemento. 
+
+Evento input é disparado quando o valor de um elemento input, select ou textarea é
+alterado
+campoFiltro.addEventListener("input", function(){
+	console.log()this.value}
+Sempre que muda o valor do campo input adicionando ou apagando texto o evento é
+disparado e nessa caso está imprimindo no console o valor do input sempre que
+um caracter é colocado ou apagado
+
+Expressão regular
+As expressões regulares são padrões de texto que podem ser usados para corresponder,
+ procurar ou substituir padrões em strings em JavaScript
+ var expressao = new RegExp(this.value, "i");
+ o new cria um novo objeto RegExp javascript, podemos passar dois parametros para
+ o objeto, primeiro o texto que queremos buscar, no caso, o termo digitado no campo
+de busca, o segundo são uma ou mais flags referente as caracteristicas dos termos
+ que devem ser buscados, case sensitive diferencia maisuculas e minusculas, 
+ case insensitive não diferencia passamos o segundo parametro a flag "i" referente
+ a case insensitive
+
+var expressao = new RegExp(this.value, "i"); 
+if (expressao.test(nome)) {
+	paciente.classList.add("invisivel");
+} else {
+	paciente.classList.remove("invisivel");
+}
+test() está verificando se thi.value tem alguma letra igual a var nome
+O test() método executa uma busca por uma correspondência entre uma expressão regular
+ e uma string especificada. Retorna true ou false.
+ 
+ O substring()método retorna a parte do stringíndice inicial até e excluindo o índice
+ final, ou até o final da string se nenhum índice final for fornecido.
+ var string = "Alura";
+var resultado = string.substring(1, 4);
+Extraímos uma string que começa no segundo caractere (número 1) e termina no quarto
+ caractere (número 3, índice anterior ao número 4). O valor da variável resultado é: lur
+ Se passarmos so um parametro ele entende que o segundo parametro é a ultima letra da string
+ substring(2) = substring(2, string.length)
+ const text = "Mozilla";
+console.log(text.substring(2, 5)); // "zil"
+console.log(text.substr(2, 3)); // "zil"
+
+Ajax é fazer uma requisição com JS de modo assíncrono porque não está parando
+o fluxo do código, ou seja, no momento em que a requisição é feita, a execução
+continua normalmente
+new é para instanciar um novo objeto
+O XMLHttpRequest é um objeto do JS responsável por fazer requisições HTTP
+No método open colocamos o tipo de requisição e a url da api a ser chamada
+No método send fazemos a chamada para a api que ja nos retorna o response
+load é um evento que é acionado quando a requisição termina e sua resposta é
+carregada, nesse caso ele coloca os dados retornados ma var.response
+A propriedade responseText acessamos os dados carregados em texto
+No console.log typeof + a var me retorna o tipo do conteudo nessa var no caso
+resposta retorna string e pacientes retorna object
+Os dados dessa api retornam o tipo json que é parecido co objetos no javascript
+para convertermos json que capturamos com o tipo string em um array de objetos
+javascript usamos o metodo parse() dessa forma JSON.parse(var)
+Podemos mostrar alguma mensagem de erro se a requisição não retronar 200 
+verificando pela propriedade staus que retorna 200 404 etc.. 
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "url da api");
+xhr.addEventListener("load", function(){
+	var resposta = xhr.responseText;
+	console.log(typeof resposta);
+	
+	var pacientes = JSON.parse(resposta);6
+	console.log(typeof pacientes);
+});
+xhr.send();
