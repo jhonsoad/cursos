@@ -1,0 +1,83 @@
+Next.js
+
+Estrutura do projeto
+Componentes React em pages:
+Os arquivos dentro da pasta pages devem exportar um componente React como padrão (export default MyPage;). Este componente é o que será renderizado quando a rota correspondente for acessada.
+
+Roteamento Baseado em Arquivos:
+O Next.js usa um sistema de roteamento baseado em arquivos. A estrutura de diretórios e os nomes dos arquivos dentro da pasta pages definem as rotas da sua aplicação.
+index.js na raiz de pages corresponde à rota /.
+Um arquivo como sobre.js dentro de pages corresponde à rota /sobre.
+
+Página de Erro 404 Customizada (404.js):
+Ao criar um arquivo 404.js dentro da pasta pages, você substitui a página de erro 404 padrão do Next.js pela sua versão customizada. Esta página é exibida quando o usuário tenta acessar uma rota que não existe.
+
+Componente _app.js (Custom App):
+Este arquivo é especial e reside dentro da pasta pages. Ele permite customizar o componente de nível superior que envolve todas as páginas da sua aplicação.
+É usado para:
+Definir layouts globais que se aplicam a todas as páginas.
+Passar props para todas as páginas.
+Adicionar estilos CSS globais.
+Manter o estado entre as navegações de página.
+
+Componente _document.js (Custom Document):
+Este arquivo avançado, também dentro de pages, permite customizar a estrutura HTML do seu aplicativo, incluindo as tags <html>, <head> e <body>.
+É usado para:
+Adicionar meta tags e links que são comuns a todas as páginas.
+Definir o atributo lang na tag <html>.
+Customizar a forma como o HTML é renderizado no servidor.
+Ele importa componentes específicos do Next.js como Html, Head, Main e NextScript, que são essenciais para o funcionamento correto da aplicação.
+
+Rotas Dinâmicas:
+Páginas com URLs variáveis são criadas usando colchetes [] no nome do arquivo dentro da pasta pages (ex: [id].js dentro de /posts).
+O nome dentro dos colchetes se torna o nome do parâmetro dinâmico acessível via router.query.
+
+useRouter:
+Hook do next/router para acessar informações da rota atual.
+Permite obter os valores dos parâmetros dinâmicos através da propriedade query do objeto router.
+
+Componente Link:
+Componente do next/link usado para criar links entre páginas na aplicação Next.js.
+Proporciona navegação do lado do cliente (SPA), atualizando apenas o necessário da página sem recarga completa.
+Requer um elemento filho (geralmente <a>) e a prop href para definir o destino do link.
+
+Navegação Padrão (<a>):
+Usar tags <a> padrão para navegação interna resulta em uma recarga completa da página, perdendo o comportamento de SPA do Next.js.
+
+Pasta public:
+Diretório na raiz do projeto para armazenar arquivos estáticos (imagens, fontes, etc.).
+Os arquivos dentro de public são servidos automaticamente e podem ser acessados na URL base da aplicação ( / ).
+Para acessar um arquivo, use o caminho a partir da raiz (ex: /images/meu-arquivo.png).
+
+Build no Next.js: Refere-se ao processo de gerar os arquivos finais para colocar a aplicação em produção. Existem diferentes estratégias de build com implicações importantes.
+
+Next Start (Build com Servidor):
+Comando padrão para iniciar uma aplicação Next.js em um servidor de produção (npm run start).
+Requer um servidor Node.js em execução para servir a aplicação.
+A pasta .next contém o build otimizado para este tipo de deploy.
+
+Static HTML Export:
+Forma de gerar a aplicação como um conjunto de arquivos HTML, CSS e JavaScript estáticos.
+Facilita o deploy em plataformas que servem arquivos estáticos (Vercel, S3 + CloudFront, GitHub Pages).
+Comando para exportar: "export": "next build && next export" no package.json, seguido de npm run export.
+Os arquivos estáticos gerados são colocados na pasta out.
+
+Vantagens do Static HTML Export:
+Hospedagem simples e barata em diversas plataformas.
+Performance aprimorada, pois os navegadores recebem HTML pronto.
+Benefícios de SEO (Search Engine Optimization) devido ao conteúdo pré-renderizado.
+Alinhado com a filosofia Jamstack.
+
+Jamstack: Arquitetura de desenvolvimento web moderna baseada em JavaScript no lado do cliente, APIs reutilizáveis e Markup pré-construído (como o HTML estático gerado pelo Next.js Export).
+
+Pré-Renderização:
+Client-Side Rendering (CSR): O navegador baixa um HTML base e o JavaScript, que então renderiza o conteúdo da página. O usuário pode ver uma tela em branco por um tempo.
+Server-Side Rendering (SSR) / Pré-Renderização: O servidor (ou o processo de build) gera o HTML completo da página antes de enviá-lo ao navegador. O usuário vê o conteúdo inicial mais rapidamente. O Next.js prioriza a pré-renderização.
+Static HTML Export e Pré-Renderização: O Static HTML Export do Next.js é uma forma de pré-renderização, onde as páginas são geradas como HTML estático no momento do build.
+
+npm run build: Comando padrão para construir a aplicação Next.js para produção, gerando a pasta .next.
+npm run export: Comando customizado (definido no package.json) que executa o next build seguido do next export, gerando os arquivos estáticos na pasta out.
+npm run start:static: Comando customizado para simular um servidor de arquivos estáticos (usando npx http-server) para testar a pasta out localmente.
+Limitações do Static HTML Export (sem configurações adicionais):
+Navegação via Link (SPA) funciona.
+Acesso direto a rotas dinâmicas via URL pode resultar em erro, pois o HTML para essas rotas específicas não é gerado no build estático por padrão
