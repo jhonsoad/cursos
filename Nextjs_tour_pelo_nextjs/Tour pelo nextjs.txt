@@ -81,3 +81,150 @@ npm run start:static: Comando customizado para simular um servidor de arquivos e
 Limitações do Static HTML Export (sem configurações adicionais):
 Navegação via Link (SPA) funciona.
 Acesso direto a rotas dinâmicas via URL pode resultar em erro, pois o HTML para essas rotas específicas não é gerado no build estático por padrão
+
+
+O Problema: Ao tentar acessar diretamente uma rota dinâmica exportada como estática, ocorre um erro (página 404) porque o Next.js não sabe quais instâncias da rota dinâmica pré-renderizar durante o build.
+
+getStaticPaths:
+Função assíncrona que você precisa exportar de arquivos de páginas dinâmicas ([id].js).
+Informa ao Next.js quais caminhos (paths) devem ser pré-renderizados estaticamente durante o build.
+Retorna um objeto com duas propriedades:
+paths: Um array de objetos, onde cada objeto define um caminho a ser pré-renderizado. Cada caminho deve ter um objeto params com as chaves correspondentes aos nomes dos parâmetros dinâmicos no nome do arquivo (ex: { params: { id: '1' } }). Os valores dos parâmetros devem ser strings.
+fallback: Um booleano que define o comportamento para caminhos não incluídos em paths.
+false: Redireciona para a página 404 para caminhos não pré-renderizados.
+true: O Next.js tenta renderizar a página sob demanda no cliente. (Requer lógica adicional para lidar com o estado de fallback).
+
+getStaticProps:
+Função assíncrona que você precisa exportar de arquivos de páginas que usam getStaticPaths.
+Busca os dados necessários para renderizar cada página estática gerada por getStaticPaths no momento do build.
+Recebe um objeto context que contém informações sobre a página atual, incluindo os params definidos em getStaticPaths.
+Retorna um objeto com uma propriedade props, que contém os dados que serão passados como props para o componente da página. Estes dados são serializados como JSON e incluídos no HTML durante o build.
+
+Fluxo de Pré-Renderização para Rotas Dinâmicas com Dados Estáticos:
+O Next.js executa getStaticPaths durante o build para obter a lista de caminhos a serem pré-renderizados.
+Para cada caminho retornado por getStaticPaths, o Next.js executa getStaticProps para buscar os dados específicos para aquela página. O context.params dentro de getStaticProps corresponde aos parâmetros do caminho atual.
+O Next.js gera o HTML estático para cada caminho, incluindo os dados retornados por getStaticProps como props para o componente da página.
+
+Acessando Dados na Página: Os dados retornados em getStaticProps são recebidos como props no componente da página.
+Integrando getStaticPaths com Dados: Em vez de definir manualmente os paths, você pode usar dados (por exemplo, de um array de posts) para gerar dinamicamente os caminhos a serem pré-renderizados. Utilize o método map no seu array de dados para criar o array de objetos paths no formato esperado.
+
+fallback: false para Páginas Não Encontradas: Definir fallback: false em getStaticPaths é uma maneira simples de garantir que os usuários que acessam URLs dinâmicas não pré-renderizadas vejam a página 404 padrão do Next.js.
+
+
+getServerSideProps:
+
+Função assíncrona que você pode exportar de um arquivo de página (.js, .jsx, .ts, .tsx) dentro da pasta pages.
+Indica ao Next.js que esta página deve ser renderizada no servidor a cada requisição do usuário.
+É executada no servidor e seu conteúdo nunca é incluído no JavaScript do browser.
+Permite buscar dados do servidor (API, banco de dados, etc.), realizar autenticação e outras operações no back-end antes de renderizar a página.
+Retorna um objeto com uma propriedade props, que contém os dados que serão passados como props para o componente da página.
+Pode também retornar um objeto redirect para redirecionar o usuário para outra página no servidor. A propriedade permanent indica se o redirecionamento é permanente (status 301) ou temporário (status 302). A propriedade destination especifica o caminho para o qual redirecionar.
+Pode também retornar um objeto notFound: true para indicar que a página não existe (retornando um erro 404).
+Vantagens do Server-Side Rendering (SSR) com getServerSideProps:
+
+Segurança: Código sensível e lógica de autenticação permanecem no servidor, protegidos do client-side.
+Dados Dinâmicos por Requisição: Garante que a página sempre exiba os dados mais recentes, pois são buscados a cada acesso.
+SEO: Conteúdo totalmente renderizado no servidor, o que pode ser melhor para indexação por mecanismos de busca.
+Cookies no Next.js:
+
+Cookies são pequenos arquivos de texto que os sites armazenam no navegador do usuário.
+Podem ser usados para armazenar informações como preferências do usuário, dados de sessão ou tokens de autenticação (embora senhas nunca devam ser armazenadas diretamente em cookies).
+O Next.js em si não possui uma API nativa para manipulação de cookies no client-side e server-side de forma unificada.
+Nookies:
+
+Uma biblioteca popular para trabalhar com cookies em aplicações Next.js (tanto no client-side quanto no server-side).
+Permite definir (nookies.set), obter (nookies.get), e destruir (nookies.destroy) cookies.
+A função nookies.set no client-side recebe null como primeiro argumento (contexto do servidor).
+A função nookies.get no getServerSideProps recebe o context como argumento para acessar os cookies da requisição.
+A função nookies.destroy no client-side também recebe null como primeiro argumento.
+Autenticação com SSR e Cookies (Exemplo):
+
+Formulário de Login (Client-Side): O usuário digita a senha e envia o formulário.
+Definindo Cookie (Client-Side): No evento de submit do formulário, a senha (ou um token gerado) é armazenada em um cookie usando nookies.set.
+Protegendo Páginas (Server-Side com getServerSideProps): Em páginas protegidas, getServerSideProps é usado para ler o cookie (usando nookies.get(context)).
+Verificação de Autenticação (Server-Side): A informação do cookie é verificada no servidor (por exemplo, comparando com uma senha secreta ou validando um token).
+Redirecionamento (Server-Side): Se a autenticação falhar, getServerSideProps retorna um objeto redirect para enviar o usuário de volta para a página de login.
+Acesso à Página (Server-Side): Se a autenticação for bem-sucedida, getServerSideProps pode buscar dados adicionais e retorná-los como props para a página.
+
+Considerações sobre Segurança de Cookies:
+Nunca armazene senhas diretamente em cookies. Use tokens seguros.
+Configure flags de segurança importantes para cookies (por exemplo, httpOnly, secure, sameSite) para mitigar riscos de ataques XSS e CSRF. Isso geralmente é feito nas opções do método nookies.set.
+A segurança da autenticação deve ser primariamente tratada no back-end. O front-end (incluindo cookies) é mais vulnerável a manipulações.
+
+Static Site Generation (SSG) vs. Server-Side Rendering (SSR) para Páginas Logadas:
+SSG: Páginas são pré-renderizadas no build time. Não é ideal para conteúdo que depende do estado de autenticação do usuário em tempo real, pois o conteúdo seria o mesmo para todos os usuários até o próximo build.
+SSR: Páginas são renderizadas sob demanda no servidor a cada requisição. É adequado para páginas logadas, pois permite verificar a autenticação e exibir conteúdo específico para o usuário atual.
+
+
+Incremental Static Regeneration (ISR): Um recurso do Next.js que permite gerar páginas estáticas sob demanda, após o build ter sido concluído. Diferente do SSG tradicional que gera todas as páginas no build time.
+Problema com SSG em Sites Grandes: Para sites com muitas páginas (ex: e-commerce, blogs com milhares de posts), o tempo de build pode se tornar excessivamente longo, impactando a produtividade e a velocidade de deploy.
+ISR como Solução: O ISR permite gerar apenas um subconjunto de páginas no build time (ou nenhuma) e regenerar páginas estaticamente em background quando um usuário as solicita. As requisições subsequentes são servidas do cache estático.
+Implementando ISR:
+getStaticPaths com fallback: true ou fallback: 'blocking':
+fallback: true: A página é exibida imediatamente com um estado de fallback (loading), enquanto o Next.js gera a página estaticamente em background para futuras requisições.
+fallback: 'blocking': A requisição é bloqueada no servidor até que a página seja gerada estaticamente. O usuário vê a página completa na primeira requisição (garante SEO).
+paths: Pode ser um array vazio ([]) para gerar todas as páginas sob demanda, ou um array com os paths das páginas mais acessadas para pré-geração inicial.
+getStaticProps com a opção revalidate:
+Adicione uma propriedade revalidate (em segundos) ao objeto retornado por getStaticProps.
+revalidate define por quanto tempo o Next.js deve manter a página em cache estático. Após esse período, a próxima requisição para a página acionará uma regeneração em background. A página em cache é servida imediatamente, e a versão regenerada será usada para as requisições subsequentes.
+Fluxo do ISR:
+Um usuário acessa uma página que não foi pré-gerada (ou cujo tempo de revalidate expirou).
+O Next.js serve a versão em cache (se existir) ou, dependendo do fallback, exibe um estado de loading (true) ou bloqueia a requisição ('blocking').
+Em background, o Next.js executa getStaticProps para buscar os dados mais recentes e gera uma nova versão estática da página.
+As requisições subsequentes para essa página recebem a versão estática regenerada (até o próximo período de revalidate expirar).
+Vantagens do ISR:
+Tempos de Build Rápidos: Gera apenas as páginas necessárias no build time.
+Dados Atualizados: Permite atualizar o conteúdo estático em intervalos definidos sem precisar rebuildar todo o site.
+Escalabilidade: Ideal para sites grandes com conteúdo que muda com frequência.
+Boa Experiência do Usuário: Serve páginas rapidamente do cache enquanto as atualizações ocorrem em background.
+Benefícios de SEO: Com fallback: 'blocking', o conteúdo completo é entregue na primeira requisição.
+Considerações:
+Requer um servidor rodando (Next.js server, Vercel, AWS Amplify, etc.) para lidar com a regeneração em background. O next export (geração puramente estática) não suporta ISR com revalidate.
+A escolha entre fallback: true e fallback: 'blocking' depende dos requisitos de SEO e da experiência do usuário desejada durante a primeira carga de uma página não cacheada.
+revalidate em getStaticProps: Define o intervalo (em segundos) para o Next.js verificar e regenerar uma página estática após o build.
+Benefícios:
+Performance de conteúdo estático para a maioria das requisições.
+Dados atualizados em intervalos definidos.
+Escalabilidade para sites com alto tráfego e atualizações frequentes.
+Menor carga no servidor de back-end para atualizações.
+Como Funciona:
+Primeira requisição (após o tempo de revalidate): Serve a versão estática existente e inicia a regeneração em background.
+Requisições subsequentes (dentro do intervalo): Serve a versão estática em cache.
+Requisições após o intervalo: Serve a versão em cache e inicia nova regeneração em background.
+Requisitos: Servidor Next.js rodando (npm run start). Não funciona com next export.
+Casos de Uso: Conteúdo que precisa ser atualizado periodicamente sem rebuilds completos (resultados de loteria, contagens, disponibilidade, notícias, etc.).
+
+
+Previsão de Comportamento: O Next.js busca prever a navegação do usuário para otimizar a experiência.
+Link Component: O componente padrão para navegação interna no Next.js (next/link).
+prefetch Prop: Uma prop booleana do componente Link que habilita o pré-carregamento da página de destino do link em background.
+Comportamento Padrão (prefetch é true em produção):
+Em produção (npm run build && npm run start), ao renderizar uma página com componentes Link, o Next.js automaticamente tenta pré-carregar as páginas de destino desses links.
+Isso ocorre para links internos do próprio projeto Next.js.
+O objetivo é reduzir a latência percebida ao navegar, fazendo com que a transição para a próxima página pareça instantânea.
+Observação no Desenvolvimento (npm run dev): O comportamento de prefetch não é ativado por padrão no modo de desenvolvimento. É necessário construir e iniciar a aplicação em modo de produção para observar o pré-carregamento.
+Vantagens do prefetch:
+Melhora a Experiência do Usuário: A navegação entre páginas pré-carregadas é muito mais rápida.
+Latência Perceptiva Negativa: A sensação de que a página já estava carregada antes do clique.
+Desvantagens Potenciais do prefetch:
+Consumo de Largura de Banda: Pré-carregar muitos links (por exemplo, em um menu extenso) pode consumir largura de banda desnecessariamente, especialmente em conexões lentas ou planos de dados limitados.
+Performance Inicial da Página: Se muitos links forem pré-carregados simultaneamente, isso pode impactar ligeiramente o tempo de carregamento inicial da página atual.
+Controlando o prefetch:
+Você pode desabilitar o pré-carregamento para links específicos definindo a prop prefetch como false no componente Link:
+JavaScript
+<Link href="/sobre" prefetch={false}>
+  <a>Sobre</a>
+</Link>
+prefetch com onMouseEnter: Mesmo com prefetch={false}, o Next.js ainda pode pré-carregar a página quando o usuário passa o mouse sobre o link (onMouseEnter). Isso oferece um meio-termo, pré-carregando apenas os links que o usuário provavelmente clicará.
+Quando Usar prefetch={false}:
+Links para páginas que são acessadas com pouca frequência.
+Links em páginas com muitos outros links para evitar o pré-carregamento excessivo.
+Em cenários onde a largura de banda é uma preocupação significativa.
+
+
+Carregamento Sob Demanda: O Dynamic Import permite carregar módulos e componentes JavaScript apenas quando eles são necessários, em vez de carregar tudo inicialmente.
+Sintaxe do Dynamic Import: Em vez do import estático tradicional, usa-se a função dynamic do next/dynamic:
+import dynamic from 'next/dynamic';
+const MeuComponenteDinamico = dynamic(() => import('../components/MeuComponente'));
+A função passada para dynamic() deve retornar uma chamada import() com o caminho para o módulo/componente.
+O componente carregado dinamicamente (MeuComponenteDinamico no exemplo) pode ser usado como qualquer outro componente React.
