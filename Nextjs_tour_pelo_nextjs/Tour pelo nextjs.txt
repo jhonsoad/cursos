@@ -228,3 +228,7 @@ import dynamic from 'next/dynamic';
 const MeuComponenteDinamico = dynamic(() => import('../components/MeuComponente'));
 A função passada para dynamic() deve retornar uma chamada import() com o caminho para o módulo/componente.
 O componente carregado dinamicamente (MeuComponenteDinamico no exemplo) pode ser usado como qualquer outro componente React.
+
+
+API routes
+Criando uma pasta chamada de api dentor de pages com um arquivo index.js dentro, voçe pode guspir um json atraves do seu projeto front como um cms
