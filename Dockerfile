@@ -1,13 +1,18 @@
-FROM node:20.17.0-alpine
+FROM node:20.16.0-alpine
 
-WORKDIR /fiap
+WORKDIR /app
 
-COPY package*.json .
+ARG FIAP_PASS
+
+ENV PASS_FIAP=$FIAP_PASS
+
+COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY . . 
 
 EXPOSE 3000
 
 CMD ["npm", "start"]
+
