@@ -48,3 +48,5 @@ CMD ["nginx", "-g", "daemon off;"]
 Firstly we build an image with the default Dockerfile with the tag `react-app:` and then we build the image with the multi-stage Dockerfile with the tag `react-app-multi-stage:`. We can see that the image without the multi-stage build is 1.7GB and the image with the multi-stage build is 200MB. 
 
 <img width="1512" alt="Screenshot 2024-01-14 at 7 20 54 PM" src="https://github.com/Pradumnasaraf/blog-react-app/assets/51878265/0aa02a8f-6f1e-445d-a093-34758c01f67e">
+# cursos
+Código fonte de diversos cursos em andamento e finalizados
