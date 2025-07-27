@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "tipoMovimentacao": "DEPOSITO",
+    "valor": 1000,
+    "dataMovimentacao": "2024-08-01"
+  }
+]

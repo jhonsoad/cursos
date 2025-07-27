@@ -32,8 +32,11 @@ module.exports = {
       name: "mfeApp",
       filename: "remoteEntry.js",
       exposes: {
+          //exportando o modulo
           './ProfileModule': './projects/mfe-app/src/app/profile/profile.module.ts',
-          './ProfileComponent': './projects/mfe-app/src/app/profile/profile.component.ts',
+
+          //exportando o componente
+          // './ProfileComponent': './projects/mfe-app/src/app/profile/profile.component.ts',
       },
 
     // For hosts (please adjust)
