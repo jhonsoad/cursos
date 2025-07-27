@@ -93,6 +93,59 @@
           }
         }
       }
+    },
+    "subapp1": {
+      "root": "subapp1",
+      "sourceRoot": "../../../subapp1/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/subapp1",
+            "index": "../../../subapp1/src/index.html",
+            "main": "../../../subapp1/src/main.ts",
+            "polyfills": "../../../subapp1/src/polyfills.ts",
+            "tsConfig": "../../../subapp1/tsconfig.app.json",
+            "assets": [
+              "../../../subapp1/src/favicon.ico",
+              "../../../subapp1/src/assets"
+            ],
+            "styles": [
+              "../../../subapp1/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "subapp2": {
+      "root": "subapp2",
+      "sourceRoot": "../../../subapp2/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/subapp2",
+            "index": "subapp2/src/index.html",
+            "main": "subapp2/src/main.ts",
+            "polyfills": "subapp2/src/polyfills.ts",
+            "tsConfig": "subapp2/tsconfig.app.json",
+            "assets": [
+              "subapp2/src/favicon.ico",
+              "subapp2/src/assets"
+            ],
+            "styles": [
+              "subapp2/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": "0fa4ab23-ca89-490a-ae34-0c6b0b260430"
   }
 }
