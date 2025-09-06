@@ -39,8 +39,7 @@ void main() async {
     apiKey: "AIzaSyAJvwfmgUbErgntC3470BVCj_rqW6RvZbo",
     authDomain: "image-gallery-web-40cde.firebaseapp.com",
     projectId: "image-gallery-web-40cde",
-    storageBucket:
-        "image-gallery-web-40cde.firebasestorage.app",
+    storageBucket: "image-gallery-web-40cde.firebasestorage.app",
     messagingSenderId: "76987236281",
     appId: "1:76987236281:web:633eede5ad87b774f50068",
   );
@@ -54,19 +53,13 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  static void setTheme(
-    BuildContext context,
-    ThemeData theme,
-  ) {
+  static void setTheme(BuildContext context, ThemeData theme) {
     _MyAppState? state = context
         .findAncestorStateOfType<_MyAppState>();
     state?.changeTheme(theme);
   }
 
-  static void setLocale(
-    BuildContext context,
-    Locale newLocale,
-  ) {
+  static void setLocale(BuildContext context, Locale newLocale) {
     _MyAppState? state = context
         .findAncestorStateOfType<_MyAppState>();
     state?.changeLocale(newLocale);
@@ -99,8 +92,7 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       theme: _themeData,
       debugShowCheckedModeBanner: false,
-      localizationsDelegates:
-          AppLocalizations.localizationsDelegates,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     );
   }

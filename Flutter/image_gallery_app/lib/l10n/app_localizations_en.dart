@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get title => 'Image';
+  String get title => 'Image: ';
 
   @override
   String get sub_title => 'Gallery';

@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @title.
   ///
   /// In en, this message translates to:
-  /// **'Image'**
+  /// **'Image: '**
   String get title;
 
   /// No description provided for @sub_title.
