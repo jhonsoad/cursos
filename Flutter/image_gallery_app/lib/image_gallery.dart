@@ -11,8 +11,7 @@ import 'main.dart';
 
 class ImageGalleryApp extends StatefulWidget {
   @override
-  _ImageGalleryAppState createState() =>
-      _ImageGalleryAppState();
+  _ImageGalleryAppState createState() => _ImageGalleryAppState();
 }
 
 class _ImageGalleryAppState extends State<ImageGalleryApp> {
@@ -44,9 +43,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
         app: instance,
       ).ref();
 
-      final imageRef = storageRef.child(
-        'images/$_imageName',
-      );
+      final imageRef = storageRef.child('images/$_imageName');
       final uploadTask = imageRef.putBlob(
         _image!,
         SettableMetadata(),
@@ -81,9 +78,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(
-        context,
-      ).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Theme.of(
           context,
@@ -99,9 +94,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: AppLocalizations.of(
-                      context,
-                    )!.title,
+                    text: AppLocalizations.of(context)!.title,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -109,9 +102,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
                     ),
                   ),
                   TextSpan(
-                    text: AppLocalizations.of(
-                      context,
-                    )!.sub_title,
+                    text: AppLocalizations.of(context)!.sub_title,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w300,
@@ -130,8 +121,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
               color: Colors.blueGrey[800],
             ),
             onPressed: () {
-              if (Theme.of(context).brightness ==
-                  Brightness.dark) {
+              if (Theme.of(context).brightness == Brightness.dark) {
                 _changeTheme(lightTheme);
               } else {
                 _changeTheme(darkTheme);
@@ -139,6 +129,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
             },
           ),
           PopupMenuButton<String>(
+            icon: Icon(Icons.language),
             onSelected: (String value) {
               if (value == 'English') {
                 _changeLanguage(const Locale('en'));
@@ -147,9 +138,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
               }
             },
             itemBuilder: (BuildContext constext) {
-              return {'English', 'Português'}.map((
-                String choice,
-              ) {
+              return {'English', 'Português'}.map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -180,18 +169,16 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
                         height: 300,
                         decoration: BoxDecoration(
                           color: Colors.grey[200],
-                          borderRadius:
-                              BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.blueGrey.shade100,
                           ),
                         ),
                         child: _image != null
                             ? ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(
-                                      12,
-                                    ),
+                                borderRadius: BorderRadius.circular(
+                                  12,
+                                ),
                                 child: Image.memory(
                                   _image!,
                                   fit: BoxFit.cover,
@@ -199,23 +186,16 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
                               )
                             : Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment
-                                        .center,
+                                    MainAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.image,
-                                    size: 80,
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                  Icon(Icons.image, size: 80),
+                                  const SizedBox(height: 10),
                                   Text(
                                     AppLocalizations.of(
                                       context,
                                     )!.no_image_selected,
                                     style: TextStyle(
-                                      color:
-                                          Colors.blueGrey,
+                                      color: Colors.blueGrey,
                                     ),
                                   ),
                                 ],
@@ -227,23 +207,19 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          padding:
-                              const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 12,
-                              ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 12,
+                          ),
                         ),
                         icon: const Icon(
                           Icons.photo_library,
                           color: Colors.white,
                         ),
                         label: Text(
-                          AppLocalizations.of(
-                            context,
-                          )!.select_image,
+                          AppLocalizations.of(context)!.select_image,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -257,14 +233,12 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            padding:
-                                const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 12,
-                                ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 12,
+                            ),
                           ),
                           icon: const Icon(
                             Icons.cloud_upload,
@@ -303,9 +277,7 @@ class _ImageGalleryAppState extends State<ImageGalleryApp> {
                   children: [
                     Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          20,
-                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       elevation: 10,
                       child: Padding(
