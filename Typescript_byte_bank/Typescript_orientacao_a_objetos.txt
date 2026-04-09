@@ -1,0 +1,129 @@
+Typescript: aplicando orientação a objetos no Front-end
+
+Diferença de Paradigma funcional e Orientação a Objetos
+
+Orientação a Objetos (OO):
+Foco: Objetos com dados e comportamentos.
+Ideia: Modelar o mundo como coisas que fazem ações e têm características.
+Estado: Objetos geralmente mudam ao longo do tempo.
+Organização: Classes agrupam dados e funções.
+
+Programação Funcional (PF):
+Foco: Funções que transformam dados.
+Ideia: Computar como avaliar expressões matemáticas.
+Estado: Dados geralmente não mudam (imutáveis).
+Organização: Código estruturado em funções.
+
+Diferenca função e metodo
+Função:
+É um bloco de código independente que realiza uma tarefa específica e pode receber argumentos e retornar um valor.
+É definida no escopo global ou dentro de um módulo ou outro escopo léxico.
+Não está intrinsecamente associada a um objeto específico.
+Para ser executada, é chamada diretamente pelo seu nome, passando os argumentos necessários.
+
+Método:
+É uma função que está associada a um objeto (ou a uma instância de uma classe).
+É definida dentro da declaração de uma classe ou de um objeto literal.
+Geralmente opera sobre os dados (propriedades) desse objeto, acessando-os através da palavra-chave this.
+Para ser executado, é chamado através do objeto ao qual pertence, usando a notação de ponto (objeto.metodo()).
+
+Portanto, a principal diferença é que um método é uma função que pertence a um objeto, enquanto uma função existe por si só em um determinado escopo. Em um contexto de programação orientada a objetos, os métodos são as formas como os objetos interagem e manipulam seus próprios dados.
+
+modificadores de acesso para propriedades e metodos
+public: Acessível em qualquer lugar (padrão).
+private: Acessível apenas dentro da própria classe.
+protected: Acessível dentro da classe e em suas subclasses.
+
+Encapsulamento e Acesso Seguro (TypeScript)
+Encapsulamento: Proteger dados internos (private) da classe contra acesso e modificação direta externa.
+
+Objetivo:
+
+Integridade dos Dados: Controlar como os dados são alterados (dentro da classe).
+Ocultar Complexidade: Esconder detalhes internos, facilitando o uso da classe.
+Manutenção/Refatoração: Alterações internas não quebram o código externo (se a interface pública se mantiver).
+Acesso Seguro (Getters): Métodos public para obter (ler) valores de propriedades private de forma controlada.
+
+Vantagens dos Getters:
+
+Controle e Validação: Lógica extra antes de retornar o valor (formatação, segurança).
+Impedir Modificação Direta: Apenas leitura, a alteração requer métodos específicos (setters).
+Abstração: A forma interna do dado pode mudar sem afetar o uso externo.
+Exemplo Resumido:
+
+TypeScript
+
+class MinhaClasse {
+  private _valor: number; // Propriedade privada (convenção com _)
+
+  constructor(valorInicial: number) {
+    this._valor = valorInicial;
+  }
+
+  // Getter público para acessar o valor de forma segura
+  public get valor(): number {
+    // Aqui podemos adicionar lógica antes de retornar
+    return this._valor;
+  }
+
+  // (Opcional) Setter público para modificar o valor de forma controlada
+  public set valor(novoValor: number) {
+    if (novoValor >= 0) {
+      this._valor = novoValor;
+    } else {
+      console.error("Valor inválido!");
+    }
+  }
+}
+
+let obj = new MinhaClasse(10);
+
+// Acesso seguro através do getter
+console.log(obj.valor); // Saída: 10
+
+// Tentativa de acesso direto (erro!)
+// console.log(obj._valor);
+
+// Modificação segura através do setter (se definido)
+obj.valor = 25;
+console.log(obj.valor); // Saída: 25
+
+obj.valor = -5; // Saída: Valor inválido!
+console.log(obj.valor); // Saída: 25 (valor não foi alterado
+
+static em Métodos:
+
+Indica que o método pertence à classe em si, não a uma instância específica dela.
+É chamado diretamente na classe (NomeDaClasse.metodoStatic()).
+Não tem acesso ao this da instância.
+Útil para funções utilitárias relacionadas à classe, sem depender de um objeto particular.
+
+
+export class ContaPremium extends Conta {
+    constructor(nome: string) {
+        super(nome); // Chama o construtor da classe Conta
+        // ... outras inicializações específicas da ContaPremium ...
+    }
+	
+	super.registrarTransacao(transacao) // para usar um metodo da classe pai
+
+extends:
+ estabelece uma relação de "é um" entre a classe filha e a classe pai, permitindo que a filha herde as características da pai.
+
+super:
+ permite que a classe filha acesse e execute métodos (incluindo o construtor) definidos na sua classe pai, possibilitando a extensão e modificação do comportamento herdado.
+ 
+Decorator
+Um decorator é essencialmente uma função que recebe informações sobre o elemento ao qual está anexado (a target da classe, o nome da propertyKey, o descriptor do método, etc.) e pode usar essas informações para alterar o comportamento desse elemento.
+
+function MeuDecorator(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
+  // Lógica do decorator aqui
+}
+
+target: Para um método estático, é a função construtora da classe. Para um método de instância, é o protótipo da classe.
+propertyKey: O nome do método que está sendo decorado (uma string ou um símbolo).
+descriptor: Um objeto que contém informações sobre a propriedade (no caso de um método, ele descreve como o método funciona). As propriedades mais importantes são:
+value: A função original do método.
+writable: Um booleano indicando se o valor pode ser alterado.
+enumerable: Um booleano indicando se a propriedade aparece durante a enumeração de propriedades do objeto.
+configurable: Um booleano indicando se a propriedade pode ser deletada ou se seus atributos (exceto writable se configurable for false) podem ser modificados.

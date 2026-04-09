@@ -1,0 +1,187 @@
+.secaoDestaque {
+  background-image: url(../../../../assets/acessibilidade-web/bg-intro.jpg);
+}
+
+//Cabeçalho
+
+//Contato Campo
+
+//Dialog Newsletter
+
+//Diferenciais
+
+//Form Contato
+
+// .formContato {
+//   width: 90%;
+//   margin: 0 auto;
+//   text-align: left;
+// }
+
+// .formContato-validacao {
+//   display: block;
+//   text-align: left;
+// }
+
+// .formContato-cta {
+//   width: 100%;
+//   margin: .5em 0;
+// }
+
+// .formContato-cta {
+//   margin-top: 1em;
+//   display: inline-block;
+//   background: transparent;
+//   color: #B72E2E;
+//   border: 1px solid #B72E2E;
+//   width: 100%;
+// }
+
+// .formContato-cta:hover,
+// .formContato-cta:focus {
+//   color: #fff;
+//   background-color: #B72E2E;
+// }
+
+// .formContato-endereco {
+//   color: #666;
+//   margin: 1em 0;
+//   text-align: center;
+// }
+
+//Lista de Artigos
+
+//Reset
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: #2F80ED;
+}
+
+//Rodape
+
+//Secao Blog 
+
+//Secao Contato
+
+//Secao Destaque
+
+//Secao Destaques
+
+/*
+  
+  .secaoDestaques-checkboxFake {
+  display: inline-blaock;
+  }
+  */
+
+//Secao Institucional
+
+//Secao Planos
+
+//Secao Sobre
+
+//Tema Padrao
+
+.escondeVisualmente {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+li[aria-hidden='true'] {
+  display: none;
+}
+
+li[aria-hidden='false'] {
+  display: block;
+}
+
+
+
+.pularNavegacao,
+.pularNavegacao:active,
+.pularNavegacao:focus,
+.pularNavegacao:hover {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  color: transparent;
+  position: absolute;
+}
+
+
+
+.apenasLeitorDeTela {
+  position: absolute;
+  z-index: -1;
+}
+
+.container {
+  padding: 3.5em 5%;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.tituloPadrao {
+  font-family: 'Montserrat', serif;
+  margin-bottom: 1em;
+  color: #4F4C4C;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btnPadrao {
+  border-radius: 5px;
+  border: 0;
+  background-color: #B72E2E;
+  color: #fff;
+  font-size: 1.2em;
+  padding: .3em 1em;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  outline: 0;
+  text-decoration: none;
+}
+
+.btnPadrao:hover,
+.btnPadrao:focus {
+  background-image: linear-gradient(rgba(255, 255, 255, .05), rgba(255, 255, 255, .05));
+  cursor: pointer;
+}
+
+.btnPadrao--pequeno {
+  font-size: 1em;
+}
+
+@media (min-width: 830px) {
+  .container {
+    width: 1200px;
+    width: 800px;
+    padding-left: 0;
+    padding-right: 0;
+    padding: 3.5em 2em;
+  }
+}
+
+@media (min-width: 1065px) {
+  .container {
+    width: 1000px;
+  }
+}

@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Roboto Mono", monospace;
+    min-height: 400px;
+    min-width: 450px;
+    background-size: 80vh;
+    color: rgb(0, 0, 0);
+    background-image: url("https://img.freepik.com/vetores-gratis/fundo-abstrato-colorido-aquarela-mancha_23-2148209190.jpg?w=996&t=st=1693358990~exp=1693359590~hmac=995452824c0015b47c9d088d352dbebac4b12ffd77f8ac40b83e29339f68d42b");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  button {
+    font-size: 24px;
+    font-family: "Futura Lt BT", sans-serif;
+    background-color: black;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    padding: 8px 20px 8px 20px;
+    color: white;
+    box-shadow: 0px 0px 5px gray;
+    border-radius: 5px 5px 0 0;
+    border: none;
+    transition: 500ms;
+    opacity: 0.8;
+    margin: 30px 0;
+  }
+  
+  button:hover {
+    color: white;
+    background-color: gray;
+  }
+  
+  button:active {
+    color: black;
+    background-color: white;
+  }
+  
+  .lista {
+    padding: 20px;
+    list-style-type: none;
+    border: 4mm ridge rgba(234, 122, 11, 0.992);
+  }
+  
+  .alura-logo {
+    width: 150px;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+  }
+  
+  [cor="laranja"] {
+    color: orange;
+  }
+  
+  [cor="vermelho"] {
+    color: red;
+  }
+  
+  [cor="branco"] {
+    color: white;
+  }
+  
+  [cor="amarelo"] {
+    color: yellow;
+  }
+  
+  [cor="rosa"] {
+    color: pink;
+  }
+  
+  [cor="preto"] {
+    color: black;
+  }
+
+  [data-lista="esconder"] {
+    display: none;
+  }
+
+  [data-lista="mostrar"] {
+    display: block;
+  }
