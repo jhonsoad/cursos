@@ -1,1 +1,3 @@
 Jest/.vscode/settings.json
+node_modules
+.env
