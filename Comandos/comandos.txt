@@ -2,11 +2,6 @@ Angular
 //limpar cache
 npm cache clean --force --cache=`npm config get cache`
 
-//reinstalar dependencias
-rm -rf node_modules package-lock.json
-npm cache clean --force
-npm install
-
 //build
 rm -rf dist
 ng build
@@ -25,9 +20,11 @@ npm update "package_name"
 //atualiza pacotes incluindo grandes mudanças no package.json
 npx npm-check-updates -u depois npm install
 
-//auditar vulnerabilidades
-npm audit fix
+//formatar com prettier
+npm run format
 
+//verificar formatação com prettier
+npm run format:check
 
 VSCode
 Shift + Alt + F
