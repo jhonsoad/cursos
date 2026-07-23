@@ -20,6 +20,10 @@ npm update "package_name"
 //atualiza pacotes incluindo grandes mudanças no package.json
 npx npm-check-updates -u depois npm install
 
+//no package-json
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+
 //formatar com prettier
 npm run format
 
